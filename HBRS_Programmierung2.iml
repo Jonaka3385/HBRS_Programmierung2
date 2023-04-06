@@ -8,5 +8,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="junit.jupiter" level="project" />
+    <orderEntry type="library" exported="" name="junit.jupiter.api" level="project" />
+    <orderEntry type="library" exported="" name="junit.jupiter.engine" level="project" />
+    <orderEntry type="library" exported="" name="junit.jupiter.migrationsupport" level="project" />
+    <orderEntry type="library" exported="" name="junit.jupiter.params" level="project" />
   </component>
 </module>
