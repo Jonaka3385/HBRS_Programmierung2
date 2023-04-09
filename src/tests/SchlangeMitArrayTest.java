@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import speicherKlassen.SchlangeMitArray;
 import java.util.NoSuchElementException;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class SchlangeMitArrayTest {
     SchlangeMitArray schlange;
 
@@ -20,53 +22,53 @@ class SchlangeMitArrayTest {
     @Test
     @DisplayName("isEmpty Test")
     void testIsEmpty(){
-        Assertions.assertTrue(schlange.isEmpty(), "isEmpty don't work, when Empty");
+        assertTrue(schlange.isEmpty(), "isEmpty don't work, when Empty");
         schlange.insert(3);
-        Assertions.assertFalse(schlange.isEmpty(), "isEmpty don't work, when not Empty");
+        assertFalse(schlange.isEmpty(), "isEmpty don't work, when not Empty");
     }
 
     @Test
     @DisplayName("size Test")
     void testSize(){
-        Assertions.assertEquals(0, schlange.size(), "size when 0 don't work");
+        assertEquals(0, schlange.size(), "size when 0 don't work");
         schlange.insert(3);
-        Assertions.assertEquals(1, schlange.size(), "size when not 0 don't work");
+        assertEquals(1, schlange.size(), "size when not 0 don't work");
     }
 
     @Test
     @DisplayName("capacity Test")
     void testCapacity(){
-        Assertions.assertEquals(3, schlange.capacity());
+        assertEquals(3, schlange.capacity());
     }
 
     @Test
     @DisplayName("insertTest")
     void testInsert(){
         schlange.insert(5);
-        Assertions.assertEquals(5, schlange.front(), "not inserted");
+        assertEquals(5, schlange.front(), "not inserted");
         schlange.insert(5);
         schlange.insert(5);
-        Assertions.assertThrows(IllegalStateException.class, () -> schlange.insert(5), "No/False Exception");
+        assertThrows(IllegalStateException.class, () -> schlange.insert(5), "No/False Exception");
     }
 
     @Test
     @DisplayName("remove Test")
     void testRemove(){
-        Assertions.assertThrows(NoSuchElementException.class, () -> schlange.remove(), "No/False Exception");
+        assertThrows(NoSuchElementException.class, () -> schlange.remove(), "No/False Exception");
         schlange.insert(5);
-        Assertions.assertEquals(5, schlange.remove(), "Not/false remove");
+        assertEquals(5, schlange.remove(), "Not/false remove");
         schlange.insert(5);
         schlange.insert(6);
-        Assertions.assertEquals(5, schlange.remove(), "Not/false remove after second insert");
+        assertEquals(5, schlange.remove(), "Not/false remove after second insert");
     }
 
     @Test
     @DisplayName("front Test")
     void testFront(){
-        Assertions.assertThrows(NoSuchElementException.class, () -> schlange.front(), "No/False Exception");
+        assertThrows(NoSuchElementException.class, () -> schlange.front(), "No/False Exception");
         schlange.insert(5);
-        Assertions.assertEquals(5, schlange.front(), "not correct front");
+        assertEquals(5, schlange.front(), "not correct front");
         schlange.insert(6);
-        Assertions.assertEquals(5, schlange.front(), "not correct front after second insert");
+        assertEquals(5, schlange.front(), "not correct front after second insert");
     }
 }
