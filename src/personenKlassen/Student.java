@@ -20,6 +20,7 @@ public class Student extends Person{
     @Override
     public boolean equals(Person pPerson){
         if (pPerson == null) return false;
+        if (pPerson == this) return true;
         return super.equals(pPerson) && this.matrikelnummer == ((Student) pPerson).getMatrikelnummer();
     }
 }

@@ -22,7 +22,6 @@ public abstract class Person {
         return name + ", " + vorname;
     }
 
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean equals(Person pPerson){
         if (pPerson == null) return false;
         return (this == pPerson) || (this.name.equals(pPerson.getName()) && this.vorname.equals(pPerson.getVorname()));

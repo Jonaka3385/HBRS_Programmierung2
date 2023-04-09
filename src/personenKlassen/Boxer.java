@@ -20,6 +20,7 @@ public class Boxer extends Person{
     @Override
     public boolean equals(Person pPerson){
         if (pPerson == null) return false;
+        if (pPerson == this) return true;
         return super.equals(pPerson) && this.gewicht == ((Boxer) pPerson).getGewicht();
     }
 }
