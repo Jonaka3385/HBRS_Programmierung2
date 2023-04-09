@@ -77,15 +77,15 @@ class StapelMitArrayTest {
         stapel.insert(2);
         stapel.insert(3);
         stapel.applyToAll(x -> 2*x);
-        Assertions.assertEquals(6, stapel.remove(), "False apply bei mal2 1. Parameter");
-        Assertions.assertEquals(4, stapel.remove(), "False apply bei mal2 2. Parameter");
-        Assertions.assertEquals(2, stapel.remove(), "False apply bei mal2 3. Parameter");
+        Assertions.assertEquals(6, stapel.remove(), "False apply at 2*x 1. Parameter");
+        Assertions.assertEquals(4, stapel.remove(), "False apply at 2*x 2. Parameter");
+        Assertions.assertEquals(2, stapel.remove(), "False apply at 2*x 3. Parameter");
         stapel.insert(1);
         stapel.insert(2);
         stapel.insert(3);
         stapel.applyToAll(x -> x*x);
-        Assertions.assertEquals(9, stapel.remove(), "False apply bei hoch2 1. Parameter");
-        Assertions.assertEquals(4, stapel.remove(), "False apply bei hoch2 2. Parameter");
-        Assertions.assertEquals(1, stapel.remove(), "False apply bei hoch2 3. Parameter");
+        Assertions.assertEquals(9, stapel.remove(), "False apply at x*x 1. Parameter");
+        Assertions.assertEquals(4, stapel.remove(), "False apply at x*x 2. Parameter");
+        Assertions.assertEquals(1, stapel.remove(), "False apply at x*x 3. Parameter");
     }
 }
