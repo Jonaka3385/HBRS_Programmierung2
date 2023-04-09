@@ -1,9 +1,6 @@
 package tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import speicherKlassen.SchlangeMitArray;
 import java.util.NoSuchElementException;
 
@@ -11,8 +8,13 @@ class SchlangeMitArrayTest {
     SchlangeMitArray schlange;
 
     @BeforeEach
-    void schlangeLeer(){
+    void setUp(){
         schlange = new SchlangeMitArray(3);
+    }
+
+    @AfterEach
+    void nullen(){
+        schlange = null;
     }
 
     @Test

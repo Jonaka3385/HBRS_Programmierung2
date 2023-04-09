@@ -1,9 +1,6 @@
 package tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import speicherKlassen.StapelMitArray;
 import java.util.NoSuchElementException;
 
@@ -11,8 +8,13 @@ class StapelMitArrayTest {
     static StapelMitArray stapel;
 
     @BeforeEach
-    void stapelLeer(){
+    void setUp(){
         stapel = new StapelMitArray(3);
+    }
+
+    @AfterEach
+    void nullen(){
+        stapel = null;
     }
 
     @Test
