@@ -43,7 +43,7 @@ class StapelMitArrayTest {
     @DisplayName("insertTest")
     void testInsert(){
         stapel.insert(5);
-        Assertions.assertEquals(5, stapel.top(), "not inserted");
+        Assertions.assertEquals(1, stapel.size(), "not inserted");
         stapel.insert(5);
         stapel.insert(5);
         Assertions.assertThrows(IllegalStateException.class, () -> stapel.insert(5), "No/False Exception");
@@ -77,15 +77,15 @@ class StapelMitArrayTest {
         stapel.insert(2);
         stapel.insert(3);
         stapel.applyToAll(x -> 2*x);
-        Assertions.assertEquals(6, stapel.remove());
-        Assertions.assertEquals(4, stapel.remove());
-        Assertions.assertEquals(2, stapel.remove());
+        Assertions.assertEquals(6, stapel.remove(), "False apply bei mal2 1. Parameter");
+        Assertions.assertEquals(4, stapel.remove(), "False apply bei mal2 2. Parameter");
+        Assertions.assertEquals(2, stapel.remove(), "False apply bei mal2 3. Parameter");
         stapel.insert(1);
         stapel.insert(2);
         stapel.insert(3);
         stapel.applyToAll(x -> x*x);
-        Assertions.assertEquals(9, stapel.remove());
-        Assertions.assertEquals(4, stapel.remove());
-        Assertions.assertEquals(1, stapel.remove());
+        Assertions.assertEquals(9, stapel.remove(), "False apply bei hoch2 1. Parameter");
+        Assertions.assertEquals(4, stapel.remove(), "False apply bei hoch2 2. Parameter");
+        Assertions.assertEquals(1, stapel.remove(), "False apply bei hoch2 3. Parameter");
     }
 }
