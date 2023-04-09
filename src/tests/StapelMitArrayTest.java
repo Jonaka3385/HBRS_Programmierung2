@@ -7,11 +7,11 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StapelMitArrayTest {
-    static StapelMitArray stapel;
+    static StapelMitArray<Integer> stapel;
 
     @BeforeEach
     void setUp(){
-        stapel = new StapelMitArray(3);
+        stapel = new StapelMitArray<>(3);
     }
 
     @AfterEach

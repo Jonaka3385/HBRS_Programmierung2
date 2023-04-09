@@ -7,11 +7,11 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SchlangeMitArrayTest {
-    SchlangeMitArray schlange;
+    SchlangeMitArray<Integer> schlange;
 
     @BeforeEach
     void setUp(){
-        schlange = new SchlangeMitArray(3);
+        schlange = new SchlangeMitArray<>(3);
     }
 
     @AfterEach

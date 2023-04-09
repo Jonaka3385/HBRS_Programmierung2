@@ -3,10 +3,10 @@ package speicherKlassen;
 import java.lang.IllegalStateException;
 import java.util.NoSuchElementException;
 
-public interface Puffer {
+public interface Puffer<T> {
     boolean isEmpty();
     int size();
     int capacity();
-    void insert(int pElement) throws IllegalStateException;
-    int remove() throws NoSuchElementException;
+    void insert(Object pElement) throws IllegalStateException;
+    T remove() throws NoSuchElementException;
 }

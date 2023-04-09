@@ -3,14 +3,14 @@ package speicherKlassen;
 import mainClasses.Funktion;
 import java.util.NoSuchElementException;
 
-public class StapelMitArray implements Stapel{
-    private final int[] array;
+public class StapelMitArray<T> implements Stapel<T>{
+    private final T[] array;
     private final int max;
     private int size;
 
     public StapelMitArray(int maxGroesse){
         max = maxGroesse;
-        array = new int[max];
+        array = (T[]) new Object[max];
         size = 0;
     }
 
@@ -30,16 +30,16 @@ public class StapelMitArray implements Stapel{
     }
 
     @Override
-    public void insert(int pElement) throws IllegalStateException {
+    public void insert(Object pElement) throws IllegalStateException {
         if (size == max){
             throw new IllegalStateException();
         }
-        array[size] = pElement;
+        array[size] = (T) pElement;
         size++;
     }
 
     @Override
-    public int remove() throws NoSuchElementException {
+    public T remove() throws NoSuchElementException {
         if (size == 0){
             throw new NoSuchElementException();
         }
@@ -49,7 +49,7 @@ public class StapelMitArray implements Stapel{
     }
 
     @Override
-    public int top() throws NoSuchElementException {
+    public T top() throws NoSuchElementException {
         if (size == 0){
             throw new NoSuchElementException();
         }
@@ -57,8 +57,12 @@ public class StapelMitArray implements Stapel{
     }
 
     public void applyToAll(Funktion pFunktion){
-        for (int i = 0; i < size; i++){
-            array[i] = pFunktion.auswerten(array[i]);
+        if (isEmpty()) return;
+        if ((array instanceof Integer[] int_array)) {
+            for (int i = 0; i < size; i++) {
+                int_array[i] = pFunktion.auswerten(int_array[i]);
+                array[i] = (T) int_array[i];
+            }
         }
     }
 }

@@ -2,6 +2,6 @@ package speicherKlassen;
 
 import java.util.NoSuchElementException;
 
-public interface Stapel extends Puffer {
-    int top() throws NoSuchElementException;
+public interface Stapel<T> extends Puffer<T> {
+    T top() throws NoSuchElementException;
 }

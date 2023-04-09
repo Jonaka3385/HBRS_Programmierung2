@@ -2,14 +2,14 @@ package speicherKlassen;
 
 import java.util.NoSuchElementException;
 
-public class SchlangeMitArray implements Schlange {
-    private final int[] array;
+public class SchlangeMitArray<T> implements Schlange<T> {
+    private final T[] array;
     private final int max;
     private int size;
 
     public SchlangeMitArray(int maxGroesse){
         max = maxGroesse;
-        array = new int[max];
+        array = (T[]) new Object[max];
         size = 0;
     }
 
@@ -29,20 +29,20 @@ public class SchlangeMitArray implements Schlange {
     }
 
     @Override
-    public void insert(int pElement) throws IllegalStateException {
+    public void insert(Object pElement) throws IllegalStateException {
         if (size == max){
             throw new IllegalStateException();
         }
-        array[size] = pElement;
+        array[size] = (T) pElement;
         size++;
     }
 
     @Override
-    public int remove() throws NoSuchElementException {
+    public T remove() throws NoSuchElementException {
         if (size == 0){
             throw new NoSuchElementException();
         }
-        int tmp = array [0];
+        T tmp = array [0];
         for (int i = 0; i < size; i++) {
             array[i] = array[i+1];
         }
@@ -51,7 +51,7 @@ public class SchlangeMitArray implements Schlange {
     }
 
     @Override
-    public int front() throws NoSuchElementException {
+    public T front() throws NoSuchElementException {
         if (size == 0){
             throw new NoSuchElementException();
         }
