@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,13 @@ public class BoxerTest {
     Boxer boxer;
 
     @BeforeEach
-    void neuerBoxer(){
+    void setUp(){
         boxer = new Boxer("Name", "Vorname", 80);
+    }
+
+    @AfterEach
+    void tearDown() {
+        boxer = null;
     }
 
     @Test

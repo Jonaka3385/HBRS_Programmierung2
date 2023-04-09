@@ -15,7 +15,7 @@ class SchlangeMitArrayTest {
     }
 
     @AfterEach
-    void nullen(){
+    void tearDown(){
         schlange = null;
     }
 

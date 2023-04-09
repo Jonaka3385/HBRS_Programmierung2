@@ -15,7 +15,7 @@ class StapelMitArrayTest {
     }
 
     @AfterEach
-    void nullen(){
+    void tearDown(){
         stapel = null;
     }
 

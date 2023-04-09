@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,8 +13,13 @@ public class StudentTest {
     @Test
 
     @BeforeEach
-    void neuerStudent(){
+    void setUp(){
         student = new Student("Name", "Vorname", 1234567);
+    }
+
+    @AfterEach
+    void tearDown(){
+        student = null;
     }
 
     @Test
