@@ -63,6 +63,8 @@ public class StapelMitArray<T> implements Stapel<T>{
                 int_array[i] = pFunktion.auswerten(int_array[i]);
                 array[i] = (T) int_array[i];
             }
+        } else {
+            System.out.println("only Integer method. No effect on other datatype.");
         }
     }
 }
