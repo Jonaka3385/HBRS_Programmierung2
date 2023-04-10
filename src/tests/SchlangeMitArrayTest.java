@@ -57,9 +57,12 @@ class SchlangeMitArrayTest {
         assertThrows(NoSuchElementException.class, () -> schlange.remove(), "No/False Exception");
         schlange.insert(5);
         assertEquals(5, schlange.remove(), "Not/false remove");
+        assertThrows(NoSuchElementException.class, () -> schlange.remove(), "No/False Exception");
         schlange.insert(5);
         schlange.insert(6);
         assertEquals(5, schlange.remove(), "Not/false remove after second insert");
+        assertEquals(6, schlange.remove(), "Not/false remove after second insert");
+        assertThrows(NoSuchElementException.class, () -> schlange.remove(), "No/False Exception");
     }
 
     @Test

@@ -43,8 +43,9 @@ public class SchlangeMitArray<T> implements Schlange<T> {
             throw new NoSuchElementException();
         }
         T tmp = array [0];
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size-1; i++) {
             array[i] = array[i+1];
+            array[i+1] = null;
         }
         size--;
         return tmp;
