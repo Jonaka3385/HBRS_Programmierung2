@@ -1,6 +1,8 @@
 package speicherKlassen;
 
 import mainClasses.Funktion;
+
+import java.util.IllegalFormatException;
 import java.util.NoSuchElementException;
 
 public class StapelMitArray<T> implements Stapel<T>{
@@ -58,13 +60,18 @@ public class StapelMitArray<T> implements Stapel<T>{
 
     public void applyToAll(Funktion pFunktion){
         if (isEmpty()) return;
-        if ((array instanceof Integer[] int_array)) {
-            for (int i = 0; i < size; i++) {
-                int_array[i] = pFunktion.auswerten(int_array[i]);
-                array[i] = (T) int_array[i];
+        Integer[] intA = new Integer[capacity()];
+        if (!(array[0] instanceof Integer)) throw new IllegalStateException("No Integer");
+        try {
+            for (int i = 0; i<size; i++) {
+                intA[i] = (Integer) array[i];
             }
-        } else {
-            System.out.println("only Integer method. No effect on other datatype.");
+        } catch (Exception e) {
+            throw new IllegalStateException("Array copying failed");
+        }
+        for (int i = 0; i < size; i++) {
+            intA[i] = pFunktion.auswerten(intA[i]);
+            array[i] = (T) intA[i];
         }
     }
 }

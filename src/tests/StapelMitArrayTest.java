@@ -89,5 +89,8 @@ class StapelMitArrayTest {
         assertEquals(9, stapel.remove(), "False apply at x*x 3. Parameter");
         assertEquals(4, stapel.remove(), "False apply at x*x 2. Parameter");
         assertEquals(1, stapel.remove(), "False apply at x*x 1. Parameter");
+        StapelMitArray<String> stringStapel = new StapelMitArray<>(10);
+        stringStapel.insert("A");
+        assertThrows(IllegalStateException.class, () -> stringStapel.applyToAll(x -> x), "No/False Exception");
     }
 }

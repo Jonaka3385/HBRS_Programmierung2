@@ -8,7 +8,7 @@ import personenKlassen.Boxer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BoxerTest {
+class BoxerTest {
     Boxer boxer;
 
     @BeforeEach

@@ -5,13 +5,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import speicherKlassen.EVL;
-
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EVLTest {
-    private EVL<Integer> evl;
+    EVL<Integer> evl;
 
     @BeforeEach
     void setUp() {

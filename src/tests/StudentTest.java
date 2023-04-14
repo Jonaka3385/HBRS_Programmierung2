@@ -8,9 +8,8 @@ import personenKlassen.Student;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StudentTest {
+class StudentTest {
     Student student;
-    @Test
 
     @BeforeEach
     void setUp(){
