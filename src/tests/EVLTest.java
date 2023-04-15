@@ -61,6 +61,16 @@ class EVLTest {
     }
 
     @Test
+    @DisplayName("removeFirst test")
+    void testRemoveFirst() {
+        assertThrows(NoSuchElementException.class, () -> evl.removeFirst(), "No/False Exception");
+        evl.addLast(0);
+        evl.addLast(1);
+        assertEquals(0, evl.removeFirst(), "Falscher Remove");
+        assertEquals(1, evl.size(), "Size nicht mit verändert");
+    }
+
+    @Test
     @DisplayName("contains Test")
     void testContains() {
         evl.addLast(0);

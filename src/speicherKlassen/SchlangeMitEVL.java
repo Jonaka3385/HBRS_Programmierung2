@@ -44,7 +44,7 @@ public class SchlangeMitEVL<T> implements Schlange<T> {
             throw new NoSuchElementException();
         }
         size--;
-        return evl.removeLast();
+        return evl.removeFirst();
     }
 
     @Override

@@ -58,6 +58,20 @@ public class EVL<T> {
         return tmp.content;
     }
 
+    public T removeFirst() throws NoSuchElementException {
+        if (size == 0) throw new NoSuchElementException();
+        size--;
+        EVLElement<T> tmp = first;
+        if (size == 0) {
+            first = null;
+            last = null;
+            return tmp.content;
+        }
+        first = first.next;
+        tmp.next = null;
+        return tmp.content;
+    }
+
     public boolean contains(T e) {
         if (size == 0) return false;
         else if (first.content == e) return true;
