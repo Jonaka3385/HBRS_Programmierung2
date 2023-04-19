@@ -101,4 +101,35 @@ public class EVL<T> {
         if (t.hasNext()) str.append("-").append(getAllStrings(t.next));
         return str.toString();
     }
+
+    public void zip(EVL<T> other){
+        EVL<T> tmp = new EVL<>();
+        if (this.size > other.size()){
+            int i;
+            int ts = this.size;
+            int os = other.size();
+            for (i = 0; i < os; i++) {
+                tmp.addLast(this.removeFirst());
+                tmp.addLast(other.removeFirst());
+            }
+            for (i = os; i < ts; i++) {
+                tmp.addLast(this.removeFirst());
+            }
+        }   else {
+            int i;
+            int ts = this.size;
+            int os = other.size();
+            for (i = 0; i < ts; i++) {
+                tmp.addLast(this.removeFirst());
+                tmp.addLast(other.removeFirst());
+            }
+            for (i = ts; i < os; i++) {
+                tmp.addLast(other.removeFirst());
+            }
+        }
+        int tmpS = tmp.size();
+        for (int i = 0; i < tmpS; i++) {
+            this.addLast(tmp.removeFirst());
+        }
+    }
 }

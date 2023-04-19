@@ -99,4 +99,33 @@ class EVLTest {
         evl.addLast(2);
         assertEquals("0-1-2", evl.toString(), "toString falsch, wenn nicht leer");
     }
+
+    @Test
+    @DisplayName("zip Test")
+    void testZip() {
+        evl.addLast(4);
+        evl.addLast(1);
+        evl.addLast(7);
+        EVL<Integer> other = new EVL<>();
+        other.addLast(3);
+        other.addLast(5);
+        other.addLast(2);
+        other.addLast(8);
+        other.addLast(6);
+        evl.zip(other);
+        assertEquals("4-3-1-5-7-2-8-6", evl.toString(), "Falsch gezipt");
+
+        evl = new EVL<>();
+        other = new EVL<>();
+        other.addLast(4);
+        other.addLast(1);
+        other.addLast(7);
+        evl.addLast(3);
+        evl.addLast(5);
+        evl.addLast(2);
+        evl.addLast(8);
+        evl.addLast(6);
+        evl.zip(other);
+        assertEquals("3-4-5-1-2-7-8-6", evl.toString(), "Falsch gezipt");
+    }
 }
