@@ -14,7 +14,6 @@ public class DynArray<T> {
     public DynArray(T element) {
         array = (T[]) new Object[capacity];
         array[0] = element;
-        capacity *= 2;
         size++;
     }
 
@@ -69,6 +68,7 @@ public class DynArray<T> {
         size--;
         T te = array[size];
         array[size] = null;
+        checkDownsizing();
         return te;
     }
 
