@@ -70,4 +70,9 @@ public class Ringpuffer<T> {
         array[size] = null;
         return tmp;
     }
+
+    public void reset() {
+        array = (T[]) new Object[capacity];
+        size = 0;
+    }
 }
