@@ -35,13 +35,14 @@ public class FolgeMitDynArray<T> implements Folge<T> {
     }
 
     @Override
-    public void insert(T e) throws IllegalStateException {
+    public void insert(T e) {
         dynArray.addLast(e);
     }
 
     @Override
     public void insert(int pos, T e) throws IllegalStateException {
-        if (dynArray.size() == dynArray.capacity()) throw new IllegalStateException();
+        if (pos < 0) throw new NoSuchElementException();
+        if (pos >= dynArray.capacity()) throw new IllegalStateException();
         DynArray<T> tmp = new DynArray<>();
         for (int i = 0; i < pos; i++) {
             tmp.addLast(dynArray.get(i));
@@ -59,7 +60,7 @@ public class FolgeMitDynArray<T> implements Folge<T> {
     }
 
     @Override
-    public T remove(int pos) throws NoSuchElementException {
+    public T remove(int pos) throws NoSuchElementException, IllegalStateException {
         T element = dynArray.get(pos);
         DynArray<T> tmp = new DynArray<>();
         for (int i = 0; i < pos; i++) {

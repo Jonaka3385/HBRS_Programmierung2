@@ -42,19 +42,21 @@ class DynArrayTest {
     @Test
     @DisplayName("get Test")
     void testGet() {
-        assertThrows(NoSuchElementException.class, () -> dyna.get(0),"No/False Exception");
+        assertThrows(NoSuchElementException.class, () -> dyna.get(-1),"No/False Exception");
+        assertThrows(IllegalStateException.class, () -> dyna.get(0),"No/False Exception");
         dyna = new DynArray<>(0);
-        assertThrows(NoSuchElementException.class, () -> dyna.get(1),"No/False Exception");
+        assertThrows(IllegalStateException.class, () -> dyna.get(1),"No/False Exception");
         assertEquals(0, dyna.get(0), "False element");
     }
 
     @Test
     @DisplayName("set Test")
     void testSet() {
-        assertThrows(NoSuchElementException.class, () -> dyna.set(0, 2),"No/False Exception");
+        assertThrows(NoSuchElementException.class, () -> dyna.set(-1, 2),"No/False Exception");
+        assertThrows(IllegalStateException.class, () -> dyna.set(0, 2),"No/False Exception");
         dyna = new DynArray<>(0);
         dyna.set(0, 1);
-        assertThrows(NoSuchElementException.class, () -> dyna.set(1, 2),"No/False Exception");
+        assertThrows(IllegalStateException.class, () -> dyna.set(1, 2),"No/False Exception");
         assertEquals(1, dyna.get(0), "element not changed");
     }
 

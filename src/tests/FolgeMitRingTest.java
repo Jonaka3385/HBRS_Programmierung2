@@ -84,7 +84,7 @@ class FolgeMitRingTest {
     @Test
     @DisplayName("insert with pos Test")
     void testInsertPos() {
-        assertThrows(IllegalStateException.class, () -> folgeMitRing.insert(-1, 2), "No/False Exception");
+        assertThrows(NoSuchElementException.class, () -> folgeMitRing.insert(-1, 2), "No/False Exception");
         assertThrows(IllegalStateException.class, () -> folgeMitRing.insert(2, 2), "No/False Exception");
         folgeMitRing.insert(0, 0);
         assertEquals(0, folgeMitRing.get(0), "False insert with pos");
