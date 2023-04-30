@@ -3,13 +3,20 @@ package mainClasses;
 import speicherKlassen.Ringpuffer;
 
 public class Temperatursensor {
-    Ringpuffer<Float> puffer;
+    private final Ringpuffer<Float> puffer;
+    private int capacity;
     public Temperatursensor() {
-        puffer = new Ringpuffer<>(24);
+        capacity = 24;
+        puffer = new Ringpuffer<>(capacity);
     }
 
     public void neueMessung(Float wert) {
-        puffer.addLast(wert);
+        try {
+            puffer.addLast(wert);
+        } catch (Exception e) {
+            puffer.removeFirst();
+            puffer.addLast(wert);
+        }
     }
 
     public Float aktuelleTemperatur() {

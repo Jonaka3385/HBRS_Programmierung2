@@ -59,10 +59,7 @@ class RingpufferTest {
         assertEquals(2, ringpuffer.size(), "size nicht geändert");
         assertEquals(1, ringpuffer.get(0), "Falsche Einfüge Reihenfolge");
         assertEquals(0, ringpuffer.get(1), "Falsche Einfüge Reihenfolge");
-        ringpuffer.addFirst(2);
-        assertEquals(2, ringpuffer.size(), "size falsch verändert");
-        assertEquals(2, ringpuffer.get(0), "Falsches Puffer löschen");
-        assertEquals(1, ringpuffer.get(1), "Falsches Puffer löschen");
+        assertThrows(IllegalStateException.class, () -> ringpuffer.addFirst(2), "");
     }
 
     @Test
@@ -73,10 +70,7 @@ class RingpufferTest {
         assertEquals(2, ringpuffer.size(), "size nicht geändert");
         assertEquals(1, ringpuffer.get(1), "Falsche Einfüge Reihenfolge");
         assertEquals(0, ringpuffer.get(0), "Falsche Einfüge Reihenfolge");
-        ringpuffer.addLast(2);
-        assertEquals(2, ringpuffer.size(), "size falsch verändert");
-        assertEquals(2, ringpuffer.get(1), "Falsches Puffer löschen");
-        assertEquals(1, ringpuffer.get(0), "Falsches Puffer löschen");
+        assertThrows(IllegalStateException.class, () -> ringpuffer.addLast(2), "");
     }
 
     @Test
