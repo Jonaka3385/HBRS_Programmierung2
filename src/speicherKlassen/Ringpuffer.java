@@ -17,13 +17,15 @@ public class Ringpuffer<T> {
         return size;
     }
 
-    public T get(int pos) throws NoSuchElementException {
-        if (pos < 0 || pos >= size) throw new NoSuchElementException();
+    public T get(int pos) throws NoSuchElementException, IllegalStateException {
+        if (pos < 0) throw new NoSuchElementException();
+        if (pos >= size) throw new IllegalStateException();
         return array[pos];
     }
 
-    public void set(int pos, T element) throws NoSuchElementException {
-        if (pos < 0 || pos >= size) throw new NoSuchElementException();
+    public void set(int pos, T element) throws NoSuchElementException, IllegalStateException {
+        if (pos < 0) throw new NoSuchElementException();
+        if (pos >= size) throw new IllegalStateException();
         array[pos] = element;
     }
 

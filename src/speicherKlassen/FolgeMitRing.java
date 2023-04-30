@@ -43,7 +43,7 @@ public class FolgeMitRing<T> implements Folge<T> {
 
     @Override
     public void insert(int pos, T e) throws IllegalStateException {
-        if (ringpuffer.size() == capacity) throw new IllegalStateException();
+        if (ringpuffer.size() == capacity || pos < 0) throw new IllegalStateException();
         Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
         for (int i = 0; i < pos; i++) {
             tmp.addLast(ringpuffer.get(i));
@@ -61,7 +61,7 @@ public class FolgeMitRing<T> implements Folge<T> {
     }
 
     @Override
-    public T remove(int pos) throws NoSuchElementException {
+    public T remove(int pos) throws NoSuchElementException, IllegalStateException {
         T element = ringpuffer.get(pos);
         Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
         for (int i = 0; i < pos; i++) {

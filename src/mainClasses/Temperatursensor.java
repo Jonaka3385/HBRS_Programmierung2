@@ -4,10 +4,9 @@ import speicherKlassen.Ringpuffer;
 
 public class Temperatursensor {
     private final Ringpuffer<Float> puffer;
-    private int capacity;
+
     public Temperatursensor() {
-        capacity = 24;
-        puffer = new Ringpuffer<>(capacity);
+        puffer = new Ringpuffer<>(24);
     }
 
     public void neueMessung(Float wert) {

@@ -35,20 +35,24 @@ class RingpufferTest {
     @Test
     @DisplayName("get Test")
     void testGet() {
+        assertThrows(NoSuchElementException.class, () -> ringpuffer.get(-1), "No/False Exception");
+        assertThrows(IllegalStateException.class, () -> ringpuffer.get(0), "No/False Exception");
         ringpuffer.addFirst(0);
         assertEquals(0, ringpuffer.get(0), "Falsches get");
-        assertThrows(NoSuchElementException.class, () -> ringpuffer.get(1), "No/False Exception");
-        assertThrows(NoSuchElementException.class, () -> ringpuffer.get(20), "No/False Exception");
+        assertThrows(IllegalStateException.class, () -> ringpuffer.get(1), "No/False Exception");
+        assertThrows(IllegalStateException.class, () -> ringpuffer.get(20), "No/False Exception");
     }
 
     @Test
     @DisplayName("set Test")
     void testSet() {
+        assertThrows(NoSuchElementException.class, () -> ringpuffer.get(-1), "No/False Exception");
+        assertThrows(IllegalStateException.class, () -> ringpuffer.get(0), "No/False Exception");
         ringpuffer.addFirst(0);
         ringpuffer.set(0, 1);
         assertEquals(1, ringpuffer.get(0), "Falsches get");
-        assertThrows(NoSuchElementException.class, () -> ringpuffer.set(1, 0), "No/False Exception");
-        assertThrows(NoSuchElementException.class, () -> ringpuffer.set(20, 0), "No/False Exception");
+        assertThrows(IllegalStateException.class, () -> ringpuffer.set(1, 0), "No/False Exception");
+        assertThrows(IllegalStateException.class, () -> ringpuffer.set(20, 0), "No/False Exception");
     }
 
     @Test
