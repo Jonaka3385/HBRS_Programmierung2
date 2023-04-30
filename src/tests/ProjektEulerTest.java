@@ -46,4 +46,11 @@ class ProjektEulerTest {
         assertThrows(IllegalStateException.class, () -> ProjektEuler.differenzQsSq(0), "No/False Exception");
         assertEquals(2640, ProjektEuler.differenzQsSq(10), "Falsche Differenz aus QsSq berechnet");
     }
+
+    @Test
+    @DisplayName("kleinsteGemeinsameVielfache Test")
+    public void testKleinsteGemeinsameVielfache() {
+        assertThrows(IllegalStateException.class, () -> ProjektEuler.kleinsteGemeinsameVielfache(-1), "No/False Exception");
+        assertEquals(2520, ProjektEuler.kleinsteGemeinsameVielfache(10), "Falsches Ergebnis");
+    }
 }
