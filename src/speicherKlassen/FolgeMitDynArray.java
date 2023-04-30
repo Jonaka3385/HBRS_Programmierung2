@@ -2,23 +2,23 @@ package speicherKlassen;
 
 import java.util.NoSuchElementException;
 
-public class FolgeMitRing<T> implements Folge<T> {
-    private final Ringpuffer<T> ringpuffer;
+public class FolgeMitDynArray<T> implements Folge<T> {
+    private final DynArray<T> dynArray;
     private final int capacity;
 
-    public FolgeMitRing(int capacity){
-        ringpuffer = new Ringpuffer<>(capacity);
-        this.capacity = capacity;
+    public FolgeMitDynArray(){
+        dynArray = new DynArray<>();
+        this.capacity = dynArray.capacity();
     }
 
     @Override
     public boolean isEmpty() {
-        return ringpuffer.size() == 0;
+        return ring.size() == 0;
     }
 
     @Override
     public int size() {
-        return ringpuffer.size();
+        return ring.size();
     }
 
     @Override
@@ -28,48 +28,48 @@ public class FolgeMitRing<T> implements Folge<T> {
 
     @Override
     public void insert(T e) throws IllegalStateException {
-        ringpuffer.addLast(e);
+        ring.addLast(e);
     }
 
     @Override
     public void insert(int pos, T e) throws IllegalStateException {
-        if (ringpuffer.size() == capacity) throw new IllegalStateException();
+        if (ring.size() == capacity) throw new IllegalStateException();
         Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
-        T element = ringpuffer.get(pos);
+        T element = ring.get(pos);
         for (int i = 0; i < pos; i++) {
-            tmp.addLast(ringpuffer.get(i));
+            tmp.addLast(ring.get(i));
         }
         tmp.addLast(e);
-        for (int i = pos+1; i < ringpuffer.size(); i++) {
-            tmp.addLast(ringpuffer.get(i));
+        for (int i = pos+1; i < ring.size(); i++) {
+            tmp.addLast(ring.get(i));
         }
     }
 
     @Override
     public T remove() throws NoSuchElementException {
-        return ringpuffer.removeFirst();
+        return ring.removeFirst();
     }
 
     @Override
     public T remove(int pos) throws NoSuchElementException {
-        T element = ringpuffer.get(pos);
+        T element = ring.get(pos);
         Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
         for (int i = 0; i < pos; i++) {
-            tmp.addLast(ringpuffer.get(i));
+            tmp.addLast(ring.get(i));
         }
-        for (int i = pos+1; i < ringpuffer.size(); i++) {
-            tmp.addLast(ringpuffer.get(i));
+        for (int i = pos+1; i < ring.size(); i++) {
+            tmp.addLast(ring.get(i));
         }
         return element;
     }
 
     @Override
     public T get(int pos) {
-        return ringpuffer.get(pos);
+        return ring.get(pos);
     }
 
     @Override
     public void set(int pos, T e) {
-        ringpuffer.set(pos, e);
+        ring.set(pos, e);
     }
 }
