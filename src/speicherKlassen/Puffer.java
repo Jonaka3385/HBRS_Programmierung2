@@ -7,6 +7,6 @@ public interface Puffer<T> {
     boolean isEmpty();
     int size();
     int capacity();
-    void insert(Object pElement) throws IllegalStateException;
+    void insert(T pElement) throws IllegalStateException;
     T remove() throws NoSuchElementException;
 }

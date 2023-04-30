@@ -2,7 +2,6 @@ package speicherKlassen;
 
 import mainClasses.Funktion;
 
-import java.util.IllegalFormatException;
 import java.util.NoSuchElementException;
 
 public class StapelMitArray<T> implements Stapel<T>{
@@ -32,11 +31,11 @@ public class StapelMitArray<T> implements Stapel<T>{
     }
 
     @Override
-    public void insert(Object pElement) throws IllegalStateException {
+    public void insert(T pElement) throws IllegalStateException {
         if (size == max){
             throw new IllegalStateException();
         }
-        array[size] = (T) pElement;
+        array[size] = pElement;
         size++;
     }
 

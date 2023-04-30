@@ -6,7 +6,7 @@ public class ProjektEuler {
     public static SchlangeMitArray<Integer> findMultiples(int range) throws IllegalStateException {
         if (range <= 0) throw new IllegalStateException();
         SchlangeMitArray<Integer> multiples = new SchlangeMitArray<>(range);
-        for (Integer i = 1; i < range; i++) {
+        for (int i = 1; i < range; i++) {
             if (i % 3 == 0 || i % 5 == 0) {
                 multiples.insert(i);
             }
@@ -31,8 +31,7 @@ public class ProjektEuler {
         for (int i = 1; i <= range; i++) {
             sum += i;
         }
-        int result = (int) Math.pow(sum, 2);
-        return result;
+        return (int) Math.pow(sum, 2);
     }
 
     public static int summeDerQuadrate(int range) throws IllegalStateException {

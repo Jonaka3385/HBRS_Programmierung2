@@ -63,11 +63,11 @@ class PaarTest {
         tmp = new Paar<>(0, "A");
         assertTrue(paar.equals(tmp), "False equals with equal Object");
         tmp = new Paar<>(1, "A");
-        assertFalse(paar.equals(tmp), "False true equals with diiferent first");
+        assertFalse(paar.equals(tmp), "False true equals with different first");
         tmp = new Paar<>(0, "B");
-        assertFalse(paar.equals(tmp), "False true equals with diiferent second");
+        assertFalse(paar.equals(tmp), "False true equals with different second");
         tmp = new Paar<>(1, "B");
-        assertFalse(paar.equals(tmp), "False true equals with diiferent both");
+        assertFalse(paar.equals(tmp), "False true equals with different both");
     }
 
     @Test

@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 public class Ringpuffer<T> {
     private T[] array;
-    private int capacity;
+    private final int capacity;
     private int size;
 
     public Ringpuffer(int capacity) {

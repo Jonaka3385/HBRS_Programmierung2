@@ -5,8 +5,8 @@ import personenKlassen.Student;
 
 public class PufferPaar {
     public static void main(String[] args){
-        Puffer<Paar<Student, String>> servicePoint = new SchlangeMitArray<>(4);
-        Puffer<Paar<Boxer, Boxer>> boxEvent = new StapelMitArray<>(3);
+        SchlangeMitArray<Paar<Student, String>> servicePoint = new SchlangeMitArray<>(4);
+        StapelMitArray<Paar<Boxer, Boxer>> boxEvent = new StapelMitArray<>(3);
 
         Student student1 = new Student("Name1", "Vorname1", 1111111);
         Student student2 = new Student("Name2", "Vorname2", 1111112);
@@ -33,23 +33,21 @@ public class PufferPaar {
 
         System.out.println("ServicePoint: ");
         int l = servicePoint.size();
-        SchlangeMitArray<Paar<Student, String>> tmpservicePoint = (SchlangeMitArray<Paar<Student, String>>) servicePoint;
         for (int i = 0; i < l; i++){
             String tmp = "";
-            tmp += (tmpservicePoint.front()).toString();
+            tmp += (servicePoint.front()).toString();
             System.out.println(tmp);
-            tmpservicePoint.remove();
+            servicePoint.remove();
         }
         System.out.println();
 
         System.out.println("Box Event: ");
         l = boxEvent.size();
-        StapelMitArray<Paar<Boxer, Boxer>> tmpboxEvent = (StapelMitArray<Paar<Boxer, Boxer>>) boxEvent;
         for (int i = 0; i < l; i++){
             String tmp = "";
-            tmp += (tmpboxEvent.top()).toString();
+            tmp += (boxEvent.top()).toString();
             System.out.println(tmp);
-            tmpboxEvent.remove();
+            boxEvent.remove();
         }
     }
 }

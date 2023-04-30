@@ -32,8 +32,8 @@ public class SchlangeMitEVL<T> implements Schlange<T> {
     }
 
     @Override
-    public void insert(Object pElement) throws IllegalStateException {
-        if (pElement != null) evl.addLast((T) pElement);
+    public void insert(T pElement) throws IllegalStateException {
+        if (pElement != null) evl.addLast(pElement);
         else throw new IllegalStateException();
         size++;
     }

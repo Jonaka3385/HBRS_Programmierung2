@@ -29,11 +29,11 @@ public class SchlangeMitArray<T> implements Schlange<T> {
     }
 
     @Override
-    public void insert(Object pElement) throws IllegalStateException {
+    public void insert(T pElement) throws IllegalStateException {
         if (size == max){
             throw new IllegalStateException();
         }
-        array[size] = (T) pElement;
+        array[size] = pElement;
         size++;
     }
 
