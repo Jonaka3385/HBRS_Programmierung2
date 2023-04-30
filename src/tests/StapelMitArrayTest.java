@@ -1,7 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.*;
-import speicherKlassen.StapelMitArray;
+import speicher.StapelMitArray;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;

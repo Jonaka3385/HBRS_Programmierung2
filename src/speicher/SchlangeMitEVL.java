@@ -1,16 +1,19 @@
-package speicherKlassen;
+package speicher;
 
 import java.util.NoSuchElementException;
 
-public class SchlangeMitArray<T> implements Schlange<T> {
-    private final T[] array;
-    private final int max;
+public class SchlangeMitEVL<T> implements Schlange<T> {
+    private final EVL<T> evl;
     private int size;
 
-    public SchlangeMitArray(int maxGroesse){
-        max = maxGroesse;
-        array = (T[]) new Object[max];
+    public SchlangeMitEVL(){
+        evl = new EVL<>();
         size = 0;
+    }
+
+    public SchlangeMitEVL(T content){
+        evl = new EVL<>(content);
+        size = 1;
     }
 
     @Override
@@ -25,15 +28,13 @@ public class SchlangeMitArray<T> implements Schlange<T> {
 
     @Override
     public int capacity() {
-        return max;
+        return Integer.MAX_VALUE;
     }
 
     @Override
     public void insert(T e) throws IllegalStateException {
-        if (size == max){
-            throw new IllegalStateException();
-        }
-        array[size] = e;
+        if (e != null) evl.addLast(e);
+        else throw new IllegalStateException();
         size++;
     }
 
@@ -42,13 +43,8 @@ public class SchlangeMitArray<T> implements Schlange<T> {
         if (size == 0){
             throw new NoSuchElementException();
         }
-        T tmp = array [0];
-        for (int i = 0; i < size-1; i++) {
-            array[i] = array[i+1];
-            array[i+1] = null;
-        }
         size--;
-        return tmp;
+        return evl.removeFirst();
     }
 
     @Override
@@ -56,6 +52,6 @@ public class SchlangeMitArray<T> implements Schlange<T> {
         if (size == 0){
             throw new NoSuchElementException();
         }
-        return array[0];
+        return evl.getFirst();
     }
 }

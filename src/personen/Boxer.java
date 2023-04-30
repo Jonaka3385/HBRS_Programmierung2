@@ -1,4 +1,4 @@
-package personenKlassen;
+package personen;
 
 public class Boxer extends Person{
     private final int gewicht;

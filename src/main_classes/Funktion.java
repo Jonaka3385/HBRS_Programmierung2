@@ -1,4 +1,4 @@
-package mainClasses;
+package main_classes;
 
 @FunctionalInterface
 public interface Funktion {

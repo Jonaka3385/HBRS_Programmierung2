@@ -1,4 +1,4 @@
-package personenKlassen;
+package personen;
 
 public abstract class Person {
     protected String name;

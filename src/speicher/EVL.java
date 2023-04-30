@@ -1,4 +1,4 @@
-package speicherKlassen;
+package speicher;
 
 import java.util.NoSuchElementException;
 

@@ -1,4 +1,4 @@
-package speicherKlassen;
+package speicher;
 
 public class EVLElement<T> {
     public T content;

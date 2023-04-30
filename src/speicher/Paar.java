@@ -1,4 +1,4 @@
-package speicherKlassen;
+package speicher;
 
 public class Paar<E, Z> {
     private E erstes;
