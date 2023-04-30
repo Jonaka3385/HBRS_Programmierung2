@@ -28,12 +28,42 @@ public class Ringpuffer<T> {
     }
 
     public void addFirst(T element) throws NoSuchElementException {
-        if (size == capacity) throw new NoSuchElementException();
-        T[] tmp = (T[]) new Object[capacity];
-        tmp[0] = element;
-        for (int i = 0; i < size; i++) {
-            tmp[i+1] = array[i];
+        if (size == capacity) {
+            array[0] = element;
+        } else {
+            T[] tmp = (T[]) new Object[capacity];
+            tmp[0] = element;
+            for (int i = 0; i < size; i++) {
+                tmp[i + 1] = array[i];
+            }
+            array = tmp;
+            size++;
         }
-        array = tmp;
+    }
+
+    public void addLast(T element) throws NoSuchElementException {
+        if (size == capacity) {
+            array[size-1] = element;
+        } else {
+            array[size] = element;
+            size++;
+        }
+    }
+
+    public T removeFirst() {
+        size--;
+        T tmp = array[0];
+        for (int i = 0; i < size; i++) {
+            array[i] = array[i+1];
+        }
+        array[size] = null;
+        return tmp;
+    }
+
+    public T removeLast() {
+        size--;
+        T tmp = array[size];
+        array[size] = null;
+        return tmp;
     }
 }
