@@ -3,7 +3,7 @@ package speicherKlassen;
 import java.util.NoSuchElementException;
 
 public class FolgeMitRing<T> implements Folge<T> {
-    private final Ringpuffer<T> ringpuffer;
+    private Ringpuffer<T> ringpuffer;
     private final int capacity;
 
     public FolgeMitRing(int capacity){
@@ -27,6 +27,16 @@ public class FolgeMitRing<T> implements Folge<T> {
     }
 
     @Override
+    public T get(int pos) {
+        return ringpuffer.get(pos);
+    }
+
+    @Override
+    public void set(int pos, T e) {
+        ringpuffer.set(pos, e);
+    }
+
+    @Override
     public void insert(T e) throws IllegalStateException {
         ringpuffer.addLast(e);
     }
@@ -35,7 +45,6 @@ public class FolgeMitRing<T> implements Folge<T> {
     public void insert(int pos, T e) throws IllegalStateException {
         if (ringpuffer.size() == capacity) throw new IllegalStateException();
         Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
-        T element = ringpuffer.get(pos);
         for (int i = 0; i < pos; i++) {
             tmp.addLast(ringpuffer.get(i));
         }
@@ -43,6 +52,7 @@ public class FolgeMitRing<T> implements Folge<T> {
         for (int i = pos+1; i < ringpuffer.size(); i++) {
             tmp.addLast(ringpuffer.get(i));
         }
+        ringpuffer = tmp;
     }
 
     @Override
@@ -60,16 +70,7 @@ public class FolgeMitRing<T> implements Folge<T> {
         for (int i = pos+1; i < ringpuffer.size(); i++) {
             tmp.addLast(ringpuffer.get(i));
         }
+        ringpuffer = tmp;
         return element;
-    }
-
-    @Override
-    public T get(int pos) {
-        return ringpuffer.get(pos);
-    }
-
-    @Override
-    public void set(int pos, T e) {
-        ringpuffer.set(pos, e);
     }
 }

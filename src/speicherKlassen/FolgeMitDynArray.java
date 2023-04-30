@@ -3,73 +3,72 @@ package speicherKlassen;
 import java.util.NoSuchElementException;
 
 public class FolgeMitDynArray<T> implements Folge<T> {
-    private final DynArray<T> dynArray;
-    private final int capacity;
+    private DynArray<T> dynArray;
 
     public FolgeMitDynArray(){
         dynArray = new DynArray<>();
-        this.capacity = dynArray.capacity();
     }
 
     @Override
     public boolean isEmpty() {
-        return ring.size() == 0;
+        return dynArray.size() == 0;
     }
 
     @Override
     public int size() {
-        return ring.size();
+        return dynArray.size();
     }
 
     @Override
     public int capacity() {
-        return capacity;
-    }
-
-    @Override
-    public void insert(T e) throws IllegalStateException {
-        ring.addLast(e);
-    }
-
-    @Override
-    public void insert(int pos, T e) throws IllegalStateException {
-        if (ring.size() == capacity) throw new IllegalStateException();
-        Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
-        T element = ring.get(pos);
-        for (int i = 0; i < pos; i++) {
-            tmp.addLast(ring.get(i));
-        }
-        tmp.addLast(e);
-        for (int i = pos+1; i < ring.size(); i++) {
-            tmp.addLast(ring.get(i));
-        }
-    }
-
-    @Override
-    public T remove() throws NoSuchElementException {
-        return ring.removeFirst();
-    }
-
-    @Override
-    public T remove(int pos) throws NoSuchElementException {
-        T element = ring.get(pos);
-        Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
-        for (int i = 0; i < pos; i++) {
-            tmp.addLast(ring.get(i));
-        }
-        for (int i = pos+1; i < ring.size(); i++) {
-            tmp.addLast(ring.get(i));
-        }
-        return element;
+        return dynArray.capacity();
     }
 
     @Override
     public T get(int pos) {
-        return ring.get(pos);
+        return dynArray.get(pos);
     }
 
     @Override
     public void set(int pos, T e) {
-        ring.set(pos, e);
+        dynArray.set(pos, e);
+    }
+
+    @Override
+    public void insert(T e) throws IllegalStateException {
+        dynArray.addLast(e);
+    }
+
+    @Override
+    public void insert(int pos, T e) throws IllegalStateException {
+        if (dynArray.size() == dynArray.capacity()) throw new IllegalStateException();
+        DynArray<T> tmp = new DynArray<>();
+        for (int i = 0; i < pos; i++) {
+            tmp.addLast(dynArray.get(i));
+        }
+        tmp.addLast(e);
+        for (int i = pos+1; i < dynArray.size(); i++) {
+            tmp.addLast(dynArray.get(i));
+        }
+        dynArray = tmp;
+    }
+
+    @Override
+    public T remove() throws NoSuchElementException {
+        return dynArray.removeFirst();
+    }
+
+    @Override
+    public T remove(int pos) throws NoSuchElementException {
+        T element = dynArray.get(pos);
+        DynArray<T> tmp = new DynArray<>();
+        for (int i = 0; i < pos; i++) {
+            tmp.addLast(dynArray.get(i));
+        }
+        for (int i = pos+1; i < dynArray.size(); i++) {
+            tmp.addLast(dynArray.get(i));
+        }
+        dynArray = tmp;
+        return element;
     }
 }
