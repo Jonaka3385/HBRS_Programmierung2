@@ -6,6 +6,7 @@ import projekt_euler.ID002EvenFibonacciNumbers;
 import projekt_euler.ID006SumSquareDifference;
 import projekt_euler.ID005SmallestMultiple;
 import projekt_euler.ID001MultiplesOf3Or5;
+import speicher.Paar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +25,11 @@ class ID002EvenFibonacciNumbersTest {
     @Test
     @DisplayName("method Test")
     void testMethod() {
-        ID002EvenFibonacciNumbers.method();
+        Paar<Integer, Integer> paar = ID002EvenFibonacciNumbers.method(1, 2, 4000000);
+        assertEquals(4613730, paar.getErstes(), "Falscher erster Wert");
+        assertEquals(10, paar.getZweites(), "Falscher zweiter Wert");
+        assertThrows(IllegalStateException.class, () -> ID002EvenFibonacciNumbers.method(1, 2, 1), "No/False Exception");
+        assertThrows(IllegalStateException.class, () -> ID002EvenFibonacciNumbers.method(2, 1, 4000000), "No/False Exception");
     }
 }
 

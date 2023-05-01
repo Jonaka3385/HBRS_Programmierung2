@@ -13,6 +13,10 @@ public class Ringpuffer<T> {
         array = (T[]) new Object[capacity];
     }
 
+    public int capacity() {
+        return capacity;
+    }
+
     public int size(){
         return size;
     }

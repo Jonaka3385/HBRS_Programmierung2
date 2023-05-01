@@ -4,11 +4,9 @@ import java.util.NoSuchElementException;
 
 public class FolgeMitRing<T> implements Folge<T> {
     private Ringpuffer<T> ringpuffer;
-    private final int capacity;
 
     public FolgeMitRing(int capacity){
         ringpuffer = new Ringpuffer<>(capacity);
-        this.capacity = capacity;
     }
 
     @Override
@@ -23,7 +21,7 @@ public class FolgeMitRing<T> implements Folge<T> {
 
     @Override
     public int capacity() {
-        return capacity;
+        return ringpuffer.capacity();
     }
 
     @Override
@@ -44,8 +42,8 @@ public class FolgeMitRing<T> implements Folge<T> {
     @Override
     public void insert(int pos, T e) throws NoSuchElementException, IllegalStateException {
         if (pos < 0) throw new NoSuchElementException();
-        if (pos >= capacity) throw new IllegalStateException();
-        Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
+        if (pos >= ringpuffer.capacity()) throw new IllegalStateException();
+        Ringpuffer<T> tmp = new Ringpuffer<>(ringpuffer.capacity());
         for (int i = 0; i < pos; i++) {
             tmp.addLast(ringpuffer.get(i));
         }
@@ -64,7 +62,7 @@ public class FolgeMitRing<T> implements Folge<T> {
     @Override
     public T remove(int pos) throws NoSuchElementException, IllegalStateException {
         T element = ringpuffer.get(pos);
-        Ringpuffer<T> tmp = new Ringpuffer<>(capacity);
+        Ringpuffer<T> tmp = new Ringpuffer<>(ringpuffer.capacity());
         for (int i = 0; i < pos; i++) {
             tmp.addLast(ringpuffer.get(i));
         }
