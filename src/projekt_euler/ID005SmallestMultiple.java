@@ -1,7 +1,7 @@
 package projekt_euler;
 
 // https://projekteuler.de/problems/5
-public class KleinsteGemeinsameVielfache {
+public class ID005SmallestMultiple {
     public static int method(int range) throws IllegalStateException {
         if (range < 0) throw new IllegalStateException();
         int wert = 1;
