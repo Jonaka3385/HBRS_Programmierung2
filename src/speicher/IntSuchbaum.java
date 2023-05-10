@@ -65,7 +65,21 @@ public class IntSuchbaum {
         return hoehe(startWurzel, 0);
     }
 
-    public int hoehe(IntBaumElement element, int counter) {
+    private int hoehe(IntBaumElement element) {
+        int counter = 0;
+        if (element != null)
+        {
+            if (element.hasLinks() || element.hasRechts()) {
+                counter++;
+                int counter1 = hoehe(element.links, counter);
+                int counter2 = hoehe(element.rechts, counter);
+                counter = Math.max(counter1, counter2);
+            }
+        }
+        return counter;
+    }
+
+    private int hoehe(IntBaumElement element, int counter) {
         if (element != null)
         {
             if (element.hasLinks() || element.hasRechts()) {
@@ -82,7 +96,7 @@ public class IntSuchbaum {
         return size(startWurzel, 0);
     }
 
-    public int size(IntBaumElement element, int counter) {
+    private int size(IntBaumElement element, int counter) {
         if (element != null)
         {
             if (element.hasLinks()) {
@@ -155,6 +169,23 @@ public class IntSuchbaum {
     }
 
     public FolgeMitDynArray<Integer> breitensuche() {
-        return null;
+        int hoehe = hoehe();
+        int size = size();
+        FolgeMitDynArray<Paar<Integer, Integer>> prio = breitensucheHilfe(startWurzel);
+        FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
+        for (int i = 0; i < hoehe; i++)
+            for (int j = 0; j < size; j++) if (prio.get(j).getZweites() == i) result.insert(prio.get(j).getErstes());
+        return result;
+    }
+
+    private @NotNull FolgeMitDynArray<Paar<Integer, Integer>> breitensucheHilfe(@NotNull IntBaumElement intBaumElement) {
+        FolgeMitDynArray<Paar<Integer, Integer>> result = new FolgeMitDynArray<>();
+        Integer a = intBaumElement.wurzel;
+        Integer b = hoehe(intBaumElement);
+        Paar<Integer, Integer> paar = new Paar<>(a, b);
+        result.insert(paar);
+        if (intBaumElement.hasLinks()) result.append(breitensucheHilfe(intBaumElement.links));
+        if (intBaumElement.hasRechts()) result.append(breitensucheHilfe(intBaumElement.rechts));
+        return result;
     }
 }
