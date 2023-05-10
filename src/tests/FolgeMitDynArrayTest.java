@@ -112,4 +112,19 @@ class FolgeMitDynArrayTest {
         assertEquals(0, folgeMitDynArray.remove(0), "False remove");
         assertEquals(1, folgeMitDynArray.remove(0), "False remove");
     }
+
+    @Test
+    @DisplayName("append Test")
+    void testAppend() {
+        FolgeMitDynArray<Integer> toBeAdded = new FolgeMitDynArray<>();
+        folgeMitDynArray.insert(0);
+        folgeMitDynArray.insert(1);
+        toBeAdded.insert(2);
+        toBeAdded.insert(3);
+        folgeMitDynArray.append(toBeAdded);
+        assertEquals(0, folgeMitDynArray.remove(), "False append");
+        assertEquals(1, folgeMitDynArray.remove(), "False append");
+        assertEquals(2, folgeMitDynArray.remove(), "False append");
+        assertEquals(3, folgeMitDynArray.remove(), "False append");
+    }
 }

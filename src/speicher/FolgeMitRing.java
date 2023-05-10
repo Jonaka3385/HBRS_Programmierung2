@@ -1,5 +1,7 @@
 package speicher;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.NoSuchElementException;
 
 public class FolgeMitRing<T> implements Folge<T> {
@@ -71,5 +73,10 @@ public class FolgeMitRing<T> implements Folge<T> {
         }
         ringpuffer = tmp;
         return element;
+    }
+
+    public void append(@NotNull Folge<T> folge) throws IllegalStateException {
+        if ((this.size() + folge.size()) > this.capacity()) throw new IllegalStateException();
+        for (int i = 0; i < folge.size(); i++) this.insert(folge.get(i));
     }
 }

@@ -1,5 +1,7 @@
 package speicher;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.NoSuchElementException;
 
 public class FolgeMitDynArray<T> implements Folge<T> {
@@ -71,5 +73,9 @@ public class FolgeMitDynArray<T> implements Folge<T> {
         }
         dynArray = tmp;
         return element;
+    }
+
+    public void append(@NotNull Folge<T> folge) {
+        for (int i = 0; i < folge.size(); i++) this.insert(folge.get(i));
     }
 }

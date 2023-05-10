@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import speicher.FolgeMitDynArray;
 import speicher.FolgeMitRing;
 
 import java.util.NoSuchElementException;
@@ -112,5 +113,24 @@ class FolgeMitRingTest {
         assertThrows(IllegalStateException.class, () -> folgeMitRing.remove(2), "No/False Exception");
         assertEquals(0, folgeMitRing.remove(0), "False remove");
         assertEquals(1, folgeMitRing.remove(0), "False remove");
+    }
+
+    @Test
+    @DisplayName("append Test")
+    void testAppend() {
+        FolgeMitRing<Integer> toBeAdded = new FolgeMitRing<>(2);
+        folgeMitRing.insert(0);
+        folgeMitRing.insert(1);
+        toBeAdded.insert(2);
+        toBeAdded.insert(3);
+        assertThrows(IllegalStateException.class, () -> folgeMitRing.append(toBeAdded), "No/False Exception");
+        folgeMitRing = new FolgeMitRing<>(4);
+        folgeMitRing.insert(0);
+        folgeMitRing.insert(1);
+        folgeMitRing.append(toBeAdded);
+        assertEquals(0, folgeMitRing.remove(), "False append");
+        assertEquals(1, folgeMitRing.remove(), "False append");
+        assertEquals(2, folgeMitRing.remove(), "False append");
+        assertEquals(3, folgeMitRing.remove(), "False append");
     }
 }

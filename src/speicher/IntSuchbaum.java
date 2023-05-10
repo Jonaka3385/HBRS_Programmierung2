@@ -1,5 +1,7 @@
 package speicher;
 
+import org.jetbrains.annotations.NotNull;
+
 public class IntSuchbaum {
     IntBaumElement startWurzel;
 
@@ -96,15 +98,60 @@ public class IntSuchbaum {
     }
 
     public FolgeMitDynArray<Integer> preorder() {
-        return null;
+        FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
+        result.insert(startWurzel.wurzel);
+        if (startWurzel.hasLinks()) result.append(preorder(startWurzel.links));
+        if (startWurzel.hasRechts()) result.append(preorder(startWurzel.rechts));
+        return result;
+    }
+
+    private @NotNull FolgeMitDynArray<Integer> preorder(@NotNull IntBaumElement intBaumElement) {
+        FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
+        result.insert(intBaumElement.wurzel);
+        if (intBaumElement.hasLinks()) result.append(preorder(intBaumElement.links));
+        if (intBaumElement.hasRechts()) result.append(preorder(intBaumElement.rechts));
+        return result;
     }
 
     public FolgeMitDynArray<Integer> inorder() {
-        return null;
+        FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
+        if (startWurzel.hasLinks()) result.append(inorder(startWurzel.links));
+        result.insert(startWurzel.wurzel);
+        if (startWurzel.hasRechts()) result.append(inorder(startWurzel.rechts));
+        return result;
+    }
+
+    private @NotNull FolgeMitDynArray<Integer> inorder(@NotNull IntBaumElement intBaumElement) {
+        FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
+        if (intBaumElement.hasLinks()) result.append(inorder(intBaumElement.links));
+        result.insert(intBaumElement.wurzel);
+        if (intBaumElement.hasRechts()) result.append(inorder(intBaumElement.rechts));
+        return result;
     }
 
     public FolgeMitDynArray<Integer> postorder() {
-        return null;
+        FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
+        if (startWurzel.hasLinks()) result.append(postorder(startWurzel.links));
+        if (startWurzel.hasRechts()) result.append(postorder(startWurzel.rechts));
+        result.insert(startWurzel.wurzel);
+        return result;
+    }
+
+    private @NotNull FolgeMitDynArray<Integer> postorder(@NotNull IntBaumElement intBaumElement) {
+        FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
+        if (intBaumElement.hasLinks()) result.append(postorder(intBaumElement.links));
+        if (intBaumElement.hasRechts()) result.append(postorder(intBaumElement.rechts));
+        result.insert(intBaumElement.wurzel);
+        return result;
+    }
+
+    public FolgeMitDynArray<Integer> order(@NotNull String str) {
+        return switch (str) {
+            case "pre", "preorder" -> preorder();
+            case "in", "inorder" -> inorder();
+            case "post", "postorder" -> postorder();
+            default -> null;
+        };
     }
 
     public FolgeMitDynArray<Integer> breitensuche() {
