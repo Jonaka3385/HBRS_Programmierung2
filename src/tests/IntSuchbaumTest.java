@@ -24,6 +24,9 @@ class IntSuchbaumTest {
     @Test
     @DisplayName("isEmpty Test")
     void testIsEmpty() {
+        assertTrue(intSuchbaum.isEmpty(), "false but empty");
+        intSuchbaum.insert(0);
+        assertFalse(intSuchbaum.isEmpty(), "true but not empty");
     }
 
     @Test
