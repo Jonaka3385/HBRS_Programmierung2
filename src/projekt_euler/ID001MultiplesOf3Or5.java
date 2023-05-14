@@ -1,10 +1,11 @@
 package projekt_euler;
 
+import org.jetbrains.annotations.NotNull;
 import speicher.SchlangeMitArray;
 
 // https://projekteuler.de/problems/1
 public class ID001MultiplesOf3Or5 {
-    private static SchlangeMitArray<Integer> findMultiples(int range) throws IllegalStateException {
+    private static @NotNull SchlangeMitArray<Integer> findMultiples(int range) throws IllegalStateException {
         if (range <= 0) throw new IllegalStateException();
         SchlangeMitArray<Integer> multiples = new SchlangeMitArray<>(range);
         for (int i = 1; i < range; i++) {
