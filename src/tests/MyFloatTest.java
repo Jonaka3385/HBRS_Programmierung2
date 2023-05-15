@@ -42,6 +42,8 @@ class MyFloatTest {
     @Test
     @DisplayName(" Test")
     void neg() {
+        myFloat.neg();
+        assertEquals(-1, myFloat.vorkomma(), "False/Not negated");
     }
 
     @Test

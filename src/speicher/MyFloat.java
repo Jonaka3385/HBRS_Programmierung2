@@ -19,8 +19,8 @@ public class MyFloat {
             this.nachkomma = abs(this.nachkomma);
         }
         int stellen = 0;
-        int tmp = this.vorkomma;
-        while (tmp <= 1) {
+        int tmp = this.nachkomma;
+        while (tmp >= 1) {
             tmp /= 10;
             stellen++;
         }
@@ -41,7 +41,6 @@ public class MyFloat {
 
     public void neg(){
         vorkomma *= -1;
-        nachkomma *= -1;
     }
 
     public void add(@NotNull MyFloat myFloat) {
