@@ -1,5 +1,7 @@
 package speicher;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.NoSuchElementException;
 
 public class EVL<T> {
@@ -95,14 +97,14 @@ public class EVL<T> {
         return getAllStrings(first);
     }
 
-    private String getAllStrings(EVLElement<T> t) {
+    private @NotNull String getAllStrings(@NotNull EVLElement<T> t) {
         StringBuilder str = new StringBuilder();
         str.append(t.toString());
         if (t.hasNext()) str.append("-").append(getAllStrings(t.next));
         return str.toString();
     }
 
-    public void zip(EVL<T> other){
+    public void zip(@NotNull EVL<T> other){
         EVL<T> tmp = new EVL<>();
         if (this.size > other.size()){
             int i;

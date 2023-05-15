@@ -1,7 +1,10 @@
-package speicher;
+package main_classes;
 
 import personen.Boxer;
 import personen.Student;
+import speicher.Paar;
+import speicher.SchlangeMitArray;
+import speicher.StapelMitArray;
 
 public class PufferPaar {
     public static void main(String[] args){

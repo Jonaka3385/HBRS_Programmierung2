@@ -11,11 +11,6 @@ public class SchlangeMitEVL<T> implements Schlange<T> {
         size = 0;
     }
 
-    public SchlangeMitEVL(T content){
-        evl = new EVL<>(content);
-        size = 1;
-    }
-
     @Override
     public boolean isEmpty() {
         return size == 0;

@@ -41,7 +41,7 @@ public class DynArray<T> {
         checkUpsizing();
         T[] tmp = (T[]) new Object[capacity];
         tmp[0] = element;
-        for (int i = 0; i < size; i++) tmp[i+1] = array[i];
+        if (size >= 0) System.arraycopy(array, 0, tmp, 1, size);
         array = tmp;
         size++;
     }
@@ -57,9 +57,7 @@ public class DynArray<T> {
         T[] tmp = (T[]) new Object[capacity];
         T te = array[0];
         size--;
-        for (int i = 0; i < size; i++){
-            tmp[i] = array[i+1];
-        }
+        if (size >= 0) System.arraycopy(array, 1, tmp, 0, size);
         array = tmp;
         checkDownsizing();
         return te;
@@ -78,7 +76,7 @@ public class DynArray<T> {
         if (size == capacity) {
             capacity *= 2;
             T[] tmp = (T[]) new Object[capacity];
-            for (int i = 0; i < size; i++) tmp[i] = array[i];
+            if (size >= 0) System.arraycopy(array, 0, tmp, 0, size);
             array = tmp;
         }
     }
@@ -87,7 +85,7 @@ public class DynArray<T> {
         if (size == (capacity/4)) {
             capacity /= 2;
             T[] tmp = (T[]) new Object[capacity];
-            for (int i = 0; i < size; i++) tmp[i] = array[i];
+            if (size >= 0) System.arraycopy(array, 0, tmp, 0, size);
             array = tmp;
         }
     }

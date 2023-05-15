@@ -37,9 +37,7 @@ public class Ringpuffer<T> {
         if (size == capacity) throw new IllegalStateException();
         T[] tmp = (T[]) new Object[capacity];
         tmp[0] = element;
-        for (int i = 0; i < size; i++) {
-            tmp[i + 1] = array[i];
-        }
+        if (size >= 0) System.arraycopy(array, 0, tmp, 1, size);
         array = tmp;
         size++;
     }
