@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import speicher.MyFloat;
 
@@ -12,7 +13,7 @@ class MyFloatTest {
 
     @BeforeEach
     void setUp() {
-        myFloat = new MyFloat(1, 50, 2);
+        myFloat = new MyFloat(1, 50);
     }
 
     @AfterEach
@@ -21,38 +22,50 @@ class MyFloatTest {
     }
 
     @Test
-    void vorkomma() {
+    @DisplayName("vorkomma Test")
+    void testVorkomma() {
+        assertEquals(1, myFloat.vorkomma(), "Falsches Vorkomma");
     }
 
     @Test
-    void nachkomma() {
+    @DisplayName("nachkomma Test")
+    void testNachkomma() {
+        assertEquals(50, myFloat.nachkomma(), "Falsches Nachkomma");
     }
 
     @Test
-    void potenziert() {
+    @DisplayName("potenzierung Test")
+    void testPotenziert() {
+        assertEquals(100, myFloat.potenzierung(), "Falsche potenzierung");
     }
 
     @Test
+    @DisplayName(" Test")
     void neg() {
     }
 
     @Test
+    @DisplayName(" Test")
     void add() {
     }
 
     @Test
+    @DisplayName(" Test")
     void sub() {
     }
 
     @Test
+    @DisplayName(" Test")
     void mul() {
     }
 
     @Test
+    @DisplayName(" Test")
     void div() {
     }
 
     @Test
+    @DisplayName(" Test")
     void testToString() {
     }
 }
