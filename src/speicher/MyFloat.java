@@ -58,18 +58,18 @@ public class MyFloat {
             check();
         } else if (comp > 0) {
             if (thisVZ && myFloatVZ) {
-                this.uncheckedAdd(myFloat);
+                this.unsignedAdd(myFloat);
             } else if (thisVZ) {
                 myFloat.neg();
-                this.uncheckedSub(myFloat);
+                this.unsignedSub(myFloat);
             } else if (myFloatVZ) {
                 this.neg();
-                this.uncheckedSub(myFloat);
+                this.unsignedSub(myFloat);
                 this.neg();
             } else {
                 this.neg();
                 myFloat.neg();
-                this.uncheckedAdd(myFloat);
+                this.unsignedAdd(myFloat);
                 this.neg();
             }
         } else {
@@ -78,18 +78,18 @@ public class MyFloat {
             this.vorkomma = tmp.vorkomma();
             this.nachkomma = tmp.nachkomma();
             if (thisVZ && myFloatVZ) {
-                this.uncheckedAdd(myFloat);
+                this.unsignedAdd(myFloat);
             } else if (thisVZ) {
                 myFloat.neg();
-                this.uncheckedSub(myFloat);
+                this.unsignedSub(myFloat);
             } else if (myFloatVZ) {
                 this.neg();
-                this.uncheckedSub(myFloat);
+                this.unsignedSub(myFloat);
                 this.neg();
             } else {
                 this.neg();
                 myFloat.neg();
-                this.uncheckedAdd(myFloat);
+                this.unsignedAdd(myFloat);
                 this.neg();
             }
         }
@@ -110,18 +110,18 @@ public class MyFloat {
             nachkomma = 0;
         } else if (comp > 0) {
             if (thisVZ && myFloatVZ) {
-                this.uncheckedSub(myFloat);
+                this.unsignedSub(myFloat);
             } else if (thisVZ) {
                 myFloat.neg();
-                this.uncheckedAdd(myFloat);
+                this.unsignedAdd(myFloat);
             } else if (myFloatVZ) {
                 this.neg();
-                this.uncheckedAdd(myFloat);
+                this.unsignedAdd(myFloat);
                 this.neg();
             } else {
                 this.neg();
                 myFloat.neg();
-                this.uncheckedSub(myFloat);
+                this.unsignedSub(myFloat);
                 this.neg();
             }
         } else {
@@ -130,19 +130,19 @@ public class MyFloat {
             this.vorkomma = tmp.vorkomma();
             this.nachkomma = tmp.nachkomma();
             if (thisVZ && myFloatVZ) {
-                this.uncheckedSub(myFloat);
+                this.unsignedSub(myFloat);
                 this.neg();
             } else if (thisVZ) {
                 this.neg();
-                this.uncheckedAdd(myFloat);
+                this.unsignedAdd(myFloat);
             } else if (myFloatVZ) {
                 myFloat.neg();
-                this.uncheckedAdd(myFloat);
+                this.unsignedAdd(myFloat);
                 this.neg();
             } else {
                 this.neg();
                 myFloat.neg();
-                this.uncheckedSub(myFloat);
+                this.unsignedSub(myFloat);
             }
         }
     }
@@ -178,23 +178,23 @@ public class MyFloat {
         check();
     }
 
-    private void uncheckedAdd(@NotNull MyFloat myFloat) {
+    private void unsignedAdd(@NotNull MyFloat myFloat) {
         vorkomma += myFloat.vorkomma();
         nachkomma += myFloat.nachkomma();
         check();
     }
 
-    private void uncheckedSub(@NotNull MyFloat myFloat) {
+    private void unsignedSub(@NotNull MyFloat myFloat) {
         vorkomma -= myFloat.vorkomma();
         nachkomma -= myFloat.nachkomma();
         check();
     }
 
-    private void uncheckedMul(@NotNull MyFloat myFloat) {
+    private void unsignedMul(@NotNull MyFloat myFloat) {
         check();
     }
 
-    private void uncheckedDiv(@NotNull MyFloat myFloat) {
+    private void unsignedDiv(@NotNull MyFloat myFloat) {
         check();
     }
 
