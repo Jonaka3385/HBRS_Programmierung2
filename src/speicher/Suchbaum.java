@@ -5,9 +5,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Comparator;
 
-public class Suchbaum<T> {
+public class Suchbaum<T extends Comparable<T>> {
     private BaumKnoten<T> startWurzel;
-    private Comparator<T> comparator;
+    private final Comparator<T> comparator;
 
     public Suchbaum() {
         startWurzel = null;

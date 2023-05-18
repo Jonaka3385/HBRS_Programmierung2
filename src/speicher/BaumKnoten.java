@@ -1,7 +1,5 @@
 package speicher;
 
-import org.jetbrains.annotations.NotNull;
-
 public class BaumKnoten<T> {
     public BaumKnoten<T> links;
     public T wurzel;
