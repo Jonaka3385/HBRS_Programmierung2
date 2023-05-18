@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import speicher.FolgeMitDynArray;
+import speicher.FolgeMitRing;
 
 import java.util.NoSuchElementException;
 
@@ -126,5 +127,15 @@ class FolgeMitDynArrayTest {
         assertEquals(1, folgeMitDynArray.remove(), "False append");
         assertEquals(2, folgeMitDynArray.remove(), "False append");
         assertEquals(3, folgeMitDynArray.remove(), "False append");
+    }
+
+    @Test
+    @DisplayName("equals Test")
+    void testEquals() {
+        FolgeMitDynArray<Integer> tmp = new FolgeMitDynArray<>();
+        assertEquals(folgeMitDynArray, tmp);
+        folgeMitDynArray.insert(0);
+        tmp.insert(1);
+        assertNotEquals(folgeMitDynArray, tmp);
     }
 }

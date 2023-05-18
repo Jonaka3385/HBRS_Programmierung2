@@ -132,4 +132,14 @@ class FolgeMitRingTest {
         assertEquals(2, folgeMitRing.remove(), "False append");
         assertEquals(3, folgeMitRing.remove(), "False append");
     }
+
+    @Test
+    @DisplayName("equals Test")
+    void testEquals() {
+        FolgeMitRing<Integer> tmp = new FolgeMitRing<>(2);
+        assertEquals(folgeMitRing, tmp);
+        folgeMitRing.insert(0);
+        tmp.insert(1);
+        assertNotEquals(folgeMitRing, tmp);
+    }
 }

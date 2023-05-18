@@ -79,4 +79,23 @@ public class FolgeMitRing<T> implements Folge<T> {
         if ((this.size() + folge.size()) > this.capacity()) throw new IllegalStateException();
         for (int i = 0; i < folge.size(); i++) this.insert(folge.get(i));
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof FolgeMitRing<?> folge2) {
+            if (this.size() == folge2.size()) {
+                for (int i = 0; i < size(); i++) {
+                    if(!this.get(i).equals(folge2.get(i))) return false;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 }

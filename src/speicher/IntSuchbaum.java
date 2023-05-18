@@ -1,9 +1,10 @@
 package speicher;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class IntSuchbaum {
-    IntBaumElement startWurzel;
+    IntBaumKnoten startWurzel;
 
     public IntSuchbaum() {
         startWurzel = null;
@@ -14,23 +15,23 @@ public class IntSuchbaum {
     }
 
     public void insert(Integer integer) {
-        if (isEmpty()) startWurzel = new IntBaumElement(integer);
+        if (isEmpty()) startWurzel = new IntBaumKnoten(integer);
         if (contains(integer)) return;
-        IntBaumElement tmp = startWurzel;
+        IntBaumKnoten tmp = startWurzel;
         int status;
         while (true) {
-            status = tmp.compare(integer);
+            status = Integer.compare(tmp.wurzel, integer);
             if (status < 0) {
                 if (tmp.hasRechts()) tmp = tmp.rechts;
                 else {
-                    tmp.rechts = new IntBaumElement(integer);
+                    tmp.rechts = new IntBaumKnoten(integer);
                     break;
                 }
             }
             else {
                 if (tmp.hasLinks()) tmp = tmp.links;
                 else {
-                    tmp.links = new IntBaumElement(integer);
+                    tmp.links = new IntBaumKnoten(integer);
                     break;
                 }
             }
@@ -39,10 +40,10 @@ public class IntSuchbaum {
 
     public boolean contains(Integer integer) {
         if (isEmpty()) return false;
-        IntBaumElement tmp = startWurzel;
+        IntBaumKnoten tmp = startWurzel;
         int status;
         while (true) {
-            status = tmp.compare(integer);
+            status = Integer.compare(tmp.wurzel, integer);
             if (status == 0) return true;
             if (status < 0) {
                 if (tmp.hasRechts()) tmp = tmp.rechts;
@@ -62,24 +63,10 @@ public class IntSuchbaum {
     }
 
     public int hoehe() {
-        return hoehe(startWurzel, 0);
+        return hoehe(startWurzel, 1);
     }
 
-    private int hoehe(IntBaumElement element) {
-        int counter = 0;
-        if (element != null)
-        {
-            if (element.hasLinks() || element.hasRechts()) {
-                counter++;
-                int counter1 = hoehe(element.links, counter);
-                int counter2 = hoehe(element.rechts, counter);
-                counter = Math.max(counter1, counter2);
-            }
-        }
-        return counter;
-    }
-
-    private int hoehe(IntBaumElement element, int counter) {
+    private int hoehe(IntBaumKnoten element, int counter) {
         if (element != null)
         {
             if (element.hasLinks() || element.hasRechts()) {
@@ -93,10 +80,10 @@ public class IntSuchbaum {
     }
 
     public int size() {
-        return size(startWurzel, 0);
+        return size(startWurzel, 1);
     }
 
-    private int size(IntBaumElement element, int counter) {
+    private int size(IntBaumKnoten element, int counter) {
         if (element != null)
         {
             if (element.hasLinks()) {
@@ -119,11 +106,11 @@ public class IntSuchbaum {
         return result;
     }
 
-    private @NotNull FolgeMitDynArray<Integer> preorder(@NotNull IntBaumElement intBaumElement) {
+    private @NotNull FolgeMitDynArray<Integer> preorder(@NotNull IntBaumKnoten intBaumKnoten) {
         FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
-        result.insert(intBaumElement.wurzel);
-        if (intBaumElement.hasLinks()) result.append(preorder(intBaumElement.links));
-        if (intBaumElement.hasRechts()) result.append(preorder(intBaumElement.rechts));
+        result.insert(intBaumKnoten.wurzel);
+        if (intBaumKnoten.hasLinks()) result.append(preorder(intBaumKnoten.links));
+        if (intBaumKnoten.hasRechts()) result.append(preorder(intBaumKnoten.rechts));
         return result;
     }
 
@@ -135,11 +122,11 @@ public class IntSuchbaum {
         return result;
     }
 
-    private @NotNull FolgeMitDynArray<Integer> inorder(@NotNull IntBaumElement intBaumElement) {
+    private @NotNull FolgeMitDynArray<Integer> inorder(@NotNull IntBaumKnoten intBaumKnoten) {
         FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
-        if (intBaumElement.hasLinks()) result.append(inorder(intBaumElement.links));
-        result.insert(intBaumElement.wurzel);
-        if (intBaumElement.hasRechts()) result.append(inorder(intBaumElement.rechts));
+        if (intBaumKnoten.hasLinks()) result.append(inorder(intBaumKnoten.links));
+        result.insert(intBaumKnoten.wurzel);
+        if (intBaumKnoten.hasRechts()) result.append(inorder(intBaumKnoten.rechts));
         return result;
     }
 
@@ -151,11 +138,11 @@ public class IntSuchbaum {
         return result;
     }
 
-    private @NotNull FolgeMitDynArray<Integer> postorder(@NotNull IntBaumElement intBaumElement) {
+    private @NotNull FolgeMitDynArray<Integer> postorder(@NotNull IntBaumKnoten intBaumKnoten) {
         FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
-        if (intBaumElement.hasLinks()) result.append(postorder(intBaumElement.links));
-        if (intBaumElement.hasRechts()) result.append(postorder(intBaumElement.rechts));
-        result.insert(intBaumElement.wurzel);
+        if (intBaumKnoten.hasLinks()) result.append(postorder(intBaumKnoten.links));
+        if (intBaumKnoten.hasRechts()) result.append(postorder(intBaumKnoten.rechts));
+        result.insert(intBaumKnoten.wurzel);
         return result;
     }
 
@@ -171,21 +158,102 @@ public class IntSuchbaum {
     public FolgeMitDynArray<Integer> breitensuche() {
         int hoehe = hoehe();
         int size = size();
-        FolgeMitDynArray<Paar<Integer, Integer>> prio = breitensucheHilfe(startWurzel);
+        FolgeMitDynArray<Paar<Integer, Integer>> prio = breitensucheHilfe(startWurzel, 0);
         FolgeMitDynArray<Integer> result = new FolgeMitDynArray<>();
         for (int i = 0; i < hoehe; i++)
             for (int j = 0; j < size; j++) if (prio.get(j).getZweites() == i) result.insert(prio.get(j).getErstes());
         return result;
     }
 
-    private @NotNull FolgeMitDynArray<Paar<Integer, Integer>> breitensucheHilfe(@NotNull IntBaumElement intBaumElement) {
+    private @NotNull FolgeMitDynArray<Paar<Integer, Integer>> breitensucheHilfe(@NotNull IntBaumKnoten intBaumKnoten, int h) {
         FolgeMitDynArray<Paar<Integer, Integer>> result = new FolgeMitDynArray<>();
-        Integer a = intBaumElement.wurzel;
-        Integer b = hoehe(intBaumElement);
+        Integer a = intBaumKnoten.wurzel;
+        Integer b = h;
         Paar<Integer, Integer> paar = new Paar<>(a, b);
         result.insert(paar);
-        if (intBaumElement.hasLinks()) result.append(breitensucheHilfe(intBaumElement.links));
-        if (intBaumElement.hasRechts()) result.append(breitensucheHilfe(intBaumElement.rechts));
+        h++;
+        if (intBaumKnoten.hasLinks()) result.append(breitensucheHilfe(intBaumKnoten.links, h));
+        if (intBaumKnoten.hasRechts()) result.append(breitensucheHilfe(intBaumKnoten.rechts, h));
         return result;
+    }
+
+    public void remove(Integer integer) {
+        IntBaumKnoten tmpKnoten = search(integer);
+        if (tmpKnoten == null) return;
+        if (startWurzel.equals(tmpKnoten)) {
+            IntBaumKnoten tmpLinks = tmpKnoten.links;
+            startWurzel = tmpLinks;
+            if (tmpLinks.hasLinks()) insertKnoten(tmpLinks.links);
+            if (tmpLinks.hasRechts()) insertKnoten(tmpLinks.rechts);
+            if (tmpKnoten.hasRechts()) insertKnoten(tmpKnoten.rechts);
+        } else {
+            IntBaumKnoten tmpUpper = searchUpper(integer);
+            assert tmpUpper != null;
+            if (tmpUpper.links.equals(tmpKnoten)) tmpUpper.links = null;
+            else if (tmpUpper.rechts.equals(tmpKnoten)) tmpUpper.rechts = null;
+            if (tmpKnoten.hasLinks()) insertKnoten(tmpKnoten.links);
+            if (tmpKnoten.hasRechts()) insertKnoten(tmpKnoten.rechts);
+        }
+    }
+
+    private void insertKnoten(@NotNull IntBaumKnoten intBaumKnoten) {
+        insert(intBaumKnoten.wurzel);
+        if (intBaumKnoten.hasLinks()) insertKnoten(intBaumKnoten.links);
+        if (intBaumKnoten.hasRechts()) insertKnoten(intBaumKnoten.rechts);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return obj instanceof IntSuchbaum equal && this.breitensuche().equals(equal.breitensuche());
+    }
+
+    private @Nullable IntBaumKnoten search(Integer integer) {
+        if (isEmpty()) return null;
+        IntBaumKnoten tmp = startWurzel;
+        int status;
+        while (true) {
+            status = Integer.compare(tmp.wurzel, integer);
+            if (status == 0) return tmp;
+            if (status < 0) {
+                if (tmp.hasRechts()) tmp = tmp.rechts;
+                else break;
+            }
+            else {
+                if (tmp.hasLinks()) tmp = tmp.links;
+                else break;
+            }
+        }
+        return null;
+    }
+
+    private @Nullable IntBaumKnoten searchUpper(Integer integer) {
+        if (isEmpty()) return null;
+        IntBaumKnoten tmp = startWurzel;
+        int status;
+        while (true) {
+            status = Integer.compare(tmp.wurzel, integer);
+            if (status == 0) break;
+            if (status < 0) {
+                if (tmp.hasRechts()) {
+                    if (tmp.rechts.wurzel.equals(integer)) return tmp;
+                    else tmp = tmp.rechts;
+                }
+                else break;
+            }
+            else {
+                if (tmp.hasLinks()) {
+                    if (tmp.links.wurzel.equals(integer)) return tmp;
+                    else tmp = tmp.links;
+                }
+                else break;
+            }
+        }
+        return null;
     }
 }
