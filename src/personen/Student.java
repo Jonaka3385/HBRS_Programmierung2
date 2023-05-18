@@ -1,11 +1,13 @@
 package personen;
 
-public class Student extends Person{
+import org.jetbrains.annotations.NotNull;
+
+public class Student extends Person implements Comparable<Student> {
     private final int matrikelnummer;
 
     public Student(String pName, String pVorname, int pMatrikelnummer){
         super(pName, pVorname);
-        matrikelnummer= pMatrikelnummer;
+        matrikelnummer = pMatrikelnummer;
     }
 
     public int getMatrikelnummer() {
@@ -22,5 +24,10 @@ public class Student extends Person{
         if (pPerson == null) return false;
         if (pPerson == this) return true;
         return super.equals(pPerson) && this.matrikelnummer == ((Student) pPerson).getMatrikelnummer();
+    }
+
+    @Override
+    public int compareTo(@NotNull Student o) {
+        return Integer.compare(matrikelnummer, o.getMatrikelnummer());
     }
 }

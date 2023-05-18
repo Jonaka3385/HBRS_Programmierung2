@@ -1,5 +1,7 @@
 package personen;
 
+import javax.management.ConstructorParameters;
+
 public abstract class Person {
     protected String name;
     protected String vorname;
