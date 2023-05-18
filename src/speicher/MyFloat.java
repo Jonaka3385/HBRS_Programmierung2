@@ -23,7 +23,7 @@ public class MyFloat {
             tmp /= 10;
             stellen++;
         }
-        this.potenzierung = (int) pow(10, stellen);
+        this.potenzierung = (int) Math.pow(10, stellen);
     }
 
     public int vorkomma() {
@@ -217,7 +217,7 @@ public class MyFloat {
         }
     }
 
-    public void sqr(int exp) {
+    public void pow(int exp) {
         if (exp == 0) {
             vorkomma = 1;
             nachkomma = 0;

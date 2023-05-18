@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import speicher.Paar;
 
 // https://projekteuler.de/problems/2
+// https://projecteuler.net/problem=2
 public class ID002EvenFibonacciNumbers {
     @Contract("_, _, _ -> new")
     public static @NotNull Paar<Integer, Integer> method(int ersterWert, int zweiterWert, int max) throws IllegalStateException {

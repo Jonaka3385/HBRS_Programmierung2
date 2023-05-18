@@ -1,6 +1,7 @@
 package projekt_euler;
 
 // https://projekteuler.de/problems/5
+// https://projecteuler.net/problem=5
 public class ID005SmallestMultiple {
     public static int method(int range) throws IllegalStateException {
         if (range < 0) throw new IllegalStateException();

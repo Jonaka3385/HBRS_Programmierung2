@@ -1,11 +1,10 @@
 package tests;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import projekt_euler.ID002EvenFibonacciNumbers;
-import projekt_euler.ID006SumSquareDifference;
-import projekt_euler.ID005SmallestMultiple;
-import projekt_euler.ID001MultiplesOf3Or5;
+import projekt_euler.*;
 import speicher.Paar;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,6 +29,14 @@ class ID002EvenFibonacciNumbersTest {
         assertEquals(10, paar.getZweites(), "Falscher zweiter Wert");
         assertThrows(IllegalStateException.class, () -> ID002EvenFibonacciNumbers.method(1, 2, 1), "No/False Exception");
         assertThrows(IllegalStateException.class, () -> ID002EvenFibonacciNumbers.method(2, 1, 4000000), "No/False Exception");
+    }
+}
+
+class ID0003LargestPrimeFactorTest {
+    @Test
+    @DisplayName("method Test")
+    void testMethod() {
+        assertEquals(29, ID0003LargestPrimeFactor.method(13195L), "Falsches Ergebnis");
     }
 }
 

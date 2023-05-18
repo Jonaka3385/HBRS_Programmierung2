@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import speicher.SchlangeMitArray;
 
 // https://projekteuler.de/problems/1
+// https://projecteuler.net/problem=1
 public class ID001MultiplesOf3Or5 {
     private static @NotNull SchlangeMitArray<Integer> findMultiples(int range) throws IllegalStateException {
         if (range <= 0) throw new IllegalStateException();

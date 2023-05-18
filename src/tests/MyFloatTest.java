@@ -149,14 +149,14 @@ class MyFloatTest {
     }
 
     @Test
-    @DisplayName("sqr Test")
+    @DisplayName("pow Test")
     void testSqr() {
-        myFloat.sqr(2);
+        myFloat.pow(2);
         assertEquals(2, myFloat.vorkomma(), "False squared (vorkomma)");
         assertEquals(25, myFloat.nachkomma(), "False squared (nachkomma)");
 
         myFloat = new MyFloat(1, 50);
-        myFloat.sqr(3);
+        myFloat.pow(3);
         assertEquals(3, myFloat.vorkomma(), "False squared (vorkomma)");
         assertEquals(37, myFloat.nachkomma(), "False squared (nachkomma)");
     }

@@ -1,6 +1,7 @@
 package projekt_euler;
 
 // https://projekteuler.de/problems/6
+// https://projecteuler.net/problem=6
 public class ID006SumSquareDifference {
     private static int quadratDerSumme(int range) throws IllegalStateException {
         if (range <= 0) throw new IllegalStateException();
