@@ -49,8 +49,8 @@ public class MyFloat {
 
         myFloat = new MyFloat(myFloat.vorkomma(), myNachkomma);
         int comp = this.compare(myFloat);
-        boolean thisVZ = vorkomma > 0;
-        boolean myFloatVZ = myFloat.vorkomma() > 0;
+        boolean thisVZ = vorkomma >= 0;
+        boolean myFloatVZ = myFloat.vorkomma() >= 0;
 
         if (comp == 0) {
             vorkomma *= 2;
@@ -101,9 +101,27 @@ public class MyFloat {
         else if (potenzierung > myFloat.potenzierung()) myNachkomma *= (double) potenzierung / myFloat.potenzierung();
 
         myFloat = new MyFloat(myFloat.vorkomma(), myNachkomma);
-        int comp = this.compare(myFloat);
-        boolean thisVZ = vorkomma > 0;
-        boolean myFloatVZ = myFloat.vorkomma() > 0;
+        boolean thisVZ = vorkomma >= 0;
+        boolean myFloatVZ = myFloat.vorkomma() >= 0;
+        int comp;
+
+        if (thisVZ && myFloatVZ) {
+            comp = this.compare(myFloat);
+        }
+        else if (thisVZ) {
+            myFloat.neg();
+            comp = this.compare(myFloat);
+            myFloat.neg();
+        }
+        else if (myFloatVZ) {
+            this.neg();
+            comp = this.compare(myFloat);
+            this.neg();
+        }
+        else {
+            comp = this.compare(myFloat);
+            comp *= -1;
+        }
 
         if (comp == 0) {
             vorkomma = 0;
@@ -148,34 +166,77 @@ public class MyFloat {
     }
 
     public void mul(@NotNull MyFloat myFloat) {
-        int myVorkomma = myFloat.vorkomma();
         int myNachkomma = myFloat.nachkomma();
-        int myPotenziert = myFloat.potenzierung();
+        if (potenzierung < myFloat.potenzierung()) myNachkomma /= (double) myFloat.potenzierung() / potenzierung;
+        else if (potenzierung > myFloat.potenzierung()) myNachkomma *= (double) potenzierung / myFloat.potenzierung();
 
-        if (potenzierung < myPotenziert) myNachkomma /= (double) myPotenziert / potenzierung;
-        else if (potenzierung > myPotenziert) myNachkomma *= (double) potenzierung / myPotenziert;
+        myFloat = new MyFloat(myFloat.vorkomma(), myNachkomma);
+        boolean thisVZ = vorkomma >= 0;
+        boolean myFloatVZ = myFloat.vorkomma() >= 0;
 
-        int tmp = (((vorkomma * potenzierung) + nachkomma) * ((myVorkomma * potenzierung) + myNachkomma));
-
-        vorkomma = 0;
-        nachkomma = tmp / potenzierung;
-        check();
+        if (thisVZ && myFloatVZ) {
+            this.unsignedMul(myFloat);
+        } else if (thisVZ) {
+            myFloat.neg();
+            this.unsignedMul(myFloat);
+            this.neg();
+        } else if (myFloatVZ) {
+            this.neg();
+            this.unsignedMul(myFloat);
+            this.neg();
+        } else {
+            this.neg();
+            myFloat.neg();
+            this.unsignedMul(myFloat);
+        }
     }
 
     public void div(@NotNull MyFloat myFloat) {
-        int myVorkomma = myFloat.vorkomma();
         int myNachkomma = myFloat.nachkomma();
-        int myPotenziert = myFloat.potenzierung();
+        if (potenzierung < myFloat.potenzierung()) myNachkomma /= (double) myFloat.potenzierung() / potenzierung;
+        else if (potenzierung > myFloat.potenzierung()) myNachkomma *= (double) potenzierung / myFloat.potenzierung();
 
-        if (potenzierung < myPotenziert) myNachkomma /= (double) myPotenziert / potenzierung;
-        else if (potenzierung > myPotenziert) myNachkomma *= (double) potenzierung / myPotenziert;
+        myFloat = new MyFloat(myFloat.vorkomma(), myNachkomma);
+        boolean thisVZ = vorkomma >= 0;
+        boolean myFloatVZ = myFloat.vorkomma() >= 0;
 
-        int tmp = (((vorkomma * potenzierung) + nachkomma) * potenzierung) /
-                ((myVorkomma * potenzierung) + myNachkomma);
+        if (thisVZ && myFloatVZ) {
+            this.unsignedDiv(myFloat);
+        } else if (thisVZ) {
+            myFloat.neg();
+            this.unsignedDiv(myFloat);
+            this.neg();
+        } else if (myFloatVZ) {
+            this.neg();
+            this.unsignedDiv(myFloat);
+            this.neg();
+        } else {
+            this.neg();
+            myFloat.neg();
+            this.unsignedDiv(myFloat);
+        }
+    }
 
-        vorkomma = 0;
-        nachkomma = tmp;
-        check();
+    public void sqr(int exp) {
+        if (exp == 0) {
+            vorkomma = 1;
+            nachkomma = 0;
+        } else if (exp > 0) {
+            MyFloat tmp = new MyFloat(vorkomma, nachkomma);
+            for (int i = 1; i < exp; i++) this.mul(tmp);
+        } else {
+            MyFloat tmp = new MyFloat(vorkomma, nachkomma);
+            exp *= -1;
+            for (int i = 0; i < exp; i++) this.mul(tmp);
+            this.invert();
+        }
+    }
+
+    public void invert() {
+        MyFloat tmp = new MyFloat(this.vorkomma, this.nachkomma);
+        vorkomma = 1;
+        nachkomma = 0;
+        this.div(tmp);
     }
 
     private void unsignedAdd(@NotNull MyFloat myFloat) {
@@ -191,10 +252,19 @@ public class MyFloat {
     }
 
     private void unsignedMul(@NotNull MyFloat myFloat) {
+        int tmp = (((vorkomma * potenzierung) + nachkomma) * ((myFloat.vorkomma() * potenzierung) + myFloat.nachkomma())) / potenzierung;
+
+        vorkomma = 0;
+        nachkomma = tmp;
         check();
     }
 
     private void unsignedDiv(@NotNull MyFloat myFloat) {
+        int tmp = (((vorkomma * potenzierung) + nachkomma) * potenzierung) /
+                ((myFloat.vorkomma() * potenzierung) + myFloat.nachkomma());
+
+        vorkomma = 0;
+        nachkomma = tmp;
         check();
     }
 
