@@ -3,9 +3,10 @@ package projekt_euler;
 import org.jetbrains.annotations.NotNull;
 import speicher.SchlangeMitArray;
 
+// Multiples of 3 or 5
 // https://projekteuler.de/problems/1
 // https://projecteuler.net/problem=1
-public class ID001MultiplesOf3Or5 {
+public class Euler001 {
     private static @NotNull SchlangeMitArray<Integer> findMultiples(int range) throws IllegalStateException {
         if (range <= 0) throw new IllegalStateException();
         SchlangeMitArray<Integer> multiples = new SchlangeMitArray<>(range);

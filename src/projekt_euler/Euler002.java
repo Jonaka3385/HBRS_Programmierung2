@@ -4,9 +4,10 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import speicher.Paar;
 
+// Even Fibonacci numbers
 // https://projekteuler.de/problems/2
 // https://projecteuler.net/problem=2
-public class ID002EvenFibonacciNumbers {
+public class Euler002 {
     @Contract("_, _, _ -> new")
     public static @NotNull Paar<Integer, Integer> method(int ersterWert, int zweiterWert, int max) throws IllegalStateException {
         if (ersterWert <= 0 || zweiterWert <= 0 || max <= 0) throw new IllegalStateException("Werte muessen groesser gleich 0");

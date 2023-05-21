@@ -1,8 +1,9 @@
 package projekt_euler;
 
+// Largest prime factor
 // https://projekteuler.de/problems/3
 // https://projecteuler.net/problem=3
-public class ID0003LargestPrimeFactor {
+public class Euler003 {
     public static long method(long wert) {
         long root = (long) Math.sqrt((double) wert);
         for (long counter = root; counter > 0; counter--) {
