@@ -104,7 +104,7 @@ public class FolgeMitRing<T> implements Folge<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
-            int current = 0;
+            int current = -1;
             @Override
             public boolean hasNext() {
                 boolean b = false;

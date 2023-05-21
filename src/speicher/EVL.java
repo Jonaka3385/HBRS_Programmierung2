@@ -144,9 +144,11 @@ public class EVL<T> implements Iterable<T> {
 
     private static class EVLIterator<T> implements Iterator<T> {
         private EVLElement<T> current;
+        private EVLElement<T> first;
 
         EVLIterator(EVLElement<T> first) {
-            current = first;
+            current = null;
+            this.first = first;
         }
 
         @Override
@@ -156,6 +158,13 @@ public class EVL<T> implements Iterable<T> {
 
         @Override
         public T next() {
+            if (current == null && first != null) {
+                current = first;
+                T tmp = first.content;
+                first = null;
+                return tmp;
+            }
+            if (current == null) throw new NullPointerException();
             current = current.next;
             return current.content;
         }

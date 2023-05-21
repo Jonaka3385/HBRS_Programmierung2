@@ -105,7 +105,7 @@ public class DynArray<T> implements Iterable<T> {
 
         DynArrayIterator(T[] array) {
             this.array = array;
-            current = 0;
+            current = -1;
         }
 
         @Override

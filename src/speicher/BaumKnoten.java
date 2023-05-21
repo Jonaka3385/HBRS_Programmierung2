@@ -37,6 +37,11 @@ public class BaumKnoten<T> {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof BaumKnoten<?> iBK) {
             boolean b1 = wurzel.equals(iBK.wurzel);
