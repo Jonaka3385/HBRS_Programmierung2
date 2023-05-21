@@ -1,8 +1,11 @@
 package speicher;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class DynArray<T> {
+public class DynArray<T> implements Iterable<T> {
     private T[] array;
     private int size = 0;
     private int capacity = 1;
@@ -87,6 +90,33 @@ public class DynArray<T> {
             T[] tmp = (T[]) new Object[capacity];
             if (size >= 0) System.arraycopy(array, 0, tmp, 0, size);
             array = tmp;
+        }
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new DynArrayIterator<>(array);
+    }
+
+    private static class DynArrayIterator<T> implements Iterator<T> {
+        T[] array;
+        int current;
+
+        DynArrayIterator(T[] array) {
+            this.array = array;
+            current = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return array[current+1] != null;
+        }
+
+        @Override
+        public T next() {
+            current++;
+            return array[current];
         }
     }
 }

@@ -2,6 +2,7 @@ package speicher;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class FolgeMitDynArray<T> implements Folge<T> {
@@ -96,5 +97,11 @@ public class FolgeMitDynArray<T> implements Folge<T> {
             }
         }
         return false;
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return dynArray.iterator();
     }
 }

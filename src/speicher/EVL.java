@@ -2,9 +2,10 @@ package speicher;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class EVL<T> {
+public class EVL<T> implements Iterable<T> {
     private EVLElement<T> first;
     private EVLElement<T> last;
     private int size = 0;
@@ -99,7 +100,7 @@ public class EVL<T> {
 
     private @NotNull String getAllStrings(@NotNull EVLElement<T> t) {
         StringBuilder str = new StringBuilder();
-        str.append(t.toString());
+        str.append(t);
         if (t.hasNext()) str.append("-").append(getAllStrings(t.next));
         return str.toString();
     }
@@ -132,6 +133,31 @@ public class EVL<T> {
         int tmpS = tmp.size();
         for (int i = 0; i < tmpS; i++) {
             this.addLast(tmp.removeFirst());
+        }
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new EVLIterator<>(first);
+    }
+
+    private static class EVLIterator<T> implements Iterator<T> {
+        private EVLElement<T> current;
+
+        EVLIterator(EVLElement<T> first) {
+            current = first;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current.hasNext();
+        }
+
+        @Override
+        public T next() {
+            current = current.next;
+            return current.content;
         }
     }
 }

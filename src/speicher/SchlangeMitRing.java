@@ -1,5 +1,8 @@
 package speicher;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SchlangeMitRing<T> implements Schlange<T> {
@@ -37,5 +40,31 @@ public class SchlangeMitRing<T> implements Schlange<T> {
     @Override
     public T remove() throws NoSuchElementException {
         return ringpuffer.removeFirst();
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            int current = 0;
+
+            @Override
+            public boolean hasNext() {
+                boolean b = false;
+                try {
+                    ringpuffer.get(current+1);
+                    b = true;
+                } catch (Exception ignored) {
+
+                }
+                return b;
+            }
+
+            @Override
+            public T next() {
+                current++;
+                return ringpuffer.get(current);
+            }
+        };
     }
 }

@@ -1,5 +1,8 @@
 package speicher;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SchlangeMitArray<T> implements Schlange<T> {
@@ -57,5 +60,24 @@ public class SchlangeMitArray<T> implements Schlange<T> {
             throw new NoSuchElementException();
         }
         return array[0];
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            int current = 0;
+
+            @Override
+            public boolean hasNext() {
+                return array[current+1] != null;
+            }
+
+            @Override
+            public T next() {
+                current++;
+                return array[current];
+            }
+        };
     }
 }

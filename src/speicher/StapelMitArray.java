@@ -1,7 +1,9 @@
 package speicher;
 
 import main_classes.Funktion;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class StapelMitArray<T> implements Stapel<T>{
@@ -45,7 +47,9 @@ public class StapelMitArray<T> implements Stapel<T>{
             throw new NoSuchElementException();
         }
         size--;
-        return array[size];
+        T tmp = array[size];
+        array[size] = null;
+        return tmp;
 
     }
 
@@ -72,5 +76,24 @@ public class StapelMitArray<T> implements Stapel<T>{
             intA[i] = pFunktion.auswerten(intA[i]);
             array[i] = (T) intA[i];
         }
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            int current = 0;
+
+            @Override
+            public boolean hasNext() {
+                return array[current+1] != null;
+            }
+
+            @Override
+            public T next() {
+                current++;
+                return array[current];
+            }
+        };
     }
 }
