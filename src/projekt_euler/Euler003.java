@@ -1,6 +1,6 @@
 package projekt_euler;
 
-// Largest prime factor
+// Largest Prime Factor
 // https://projekteuler.de/problems/3
 // https://projecteuler.net/problem=3
 public class Euler003 {

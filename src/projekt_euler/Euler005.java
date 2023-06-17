@@ -1,6 +1,6 @@
 package projekt_euler;
 
-// Smallest multiple
+// Smallest Multiple
 // https://projekteuler.de/problems/5
 // https://projecteuler.net/problem=5
 public class Euler005 {

@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
 
-// 1000-digit Fibonacci number
+// 1000-digit Fibonacci Number
 // https://projekteuler.de/problems/25
 // https://projecteuler.net/problem=25
 public class Euler025 {

@@ -4,7 +4,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import speicher.Paar;
 
-// Even Fibonacci numbers
+// Even Fibonacci Numbers
 // https://projekteuler.de/problems/2
 // https://projecteuler.net/problem=2
 public class Euler002 {

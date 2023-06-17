@@ -1,6 +1,6 @@
 package projekt_euler;
 
-// Sum square difference
+// Sum Square Difference
 // https://projekteuler.de/problems/6
 // https://projecteuler.net/problem=6
 public class Euler006 {
